@@ -121,6 +121,7 @@ export default {
                     border: 0;
                     background: #3AACFF;
                     border-radius: 3px;
+                    color: #fff;
                 }
             }
         }
