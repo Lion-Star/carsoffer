@@ -32,10 +32,17 @@
           <a :href="'#'+index" v-for="(item,index) in arrsort" :key="index">{{item}}</a>
       </div>
     </div>
+    <div class="jump">
+     <ul>
+       <li v-for="(item,index) in arrsort" :key="index" :class='{"active":ind==index}' @click='handclick(index)'>{{item}}</li>
+     </ul>
+         
+      </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   name: "home",
   components: {},
@@ -127,6 +134,7 @@ export default {
 .home {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 
 .select {
