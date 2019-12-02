@@ -41,8 +41,7 @@
      <ul>
        <li v-for="(item,index) in arrsort" :key="index" :class='{"active":ind==index}' @click='handclick(index)'>{{item}}</li>
      </ul>
-         
-      </div>
+    </div>
   </div>
 </template>
 
@@ -86,8 +85,6 @@ export default {
        }
      })
     })
-    
-   
   },
   methods: {
 
@@ -100,8 +97,6 @@ export default {
           height+=children[i].offsetHeight;
           this.list.push(height)
       }
-     
-      
     },
     handclick(i){
        this.ind=i;
@@ -269,7 +264,7 @@ export default {
   right: 15px;
   align-items: center;
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   ul{
     li{
       list-style: none;
