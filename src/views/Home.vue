@@ -47,6 +47,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import {mapState,mapMutations} from "vuex"
 export default {
   name: "home",
   components: {},
@@ -63,16 +64,19 @@ export default {
       scrollH:0
     };
   },
-
+  computed:{
+      ...mapState({
+      list: state=>state.home.list
+    })
+  },
   created() {
     this.getlist();
     this.$nextTick(()=>{
-      this.scrollHeight();
-       console.log(this.list);
-      this.left=new BScroll('.main',{
-        click:true,
-        probeType:2
-      })
+    this.scrollHeight();
+    this.left=new BScroll('.main',{
+      click:true,
+      probeType:2
+    })
      this.left.on("scroll",(res)=>{
        console.log(res)
       this.scrollH=Math.abs(res.y) ;
@@ -87,7 +91,9 @@ export default {
     })
   },
   methods: {
-
+    ...mapActions({
+      getMasterBrandList: 'home/getMasterBrandList'
+    }),
     scrollHeight(){
       let children=this.$refs.scrolllist.children //获取到每个子元素
       console.log(children)
@@ -128,7 +134,6 @@ export default {
         item.title = item.Spelling.slice(0, 1);
       });
      
-
       //操作数据方法 1
       // let data2 = [];
       // res.data.data.filter(item => {
