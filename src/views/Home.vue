@@ -78,16 +78,15 @@ export default {
       probeType:2
     })
      this.left.on("scroll",(res)=>{
-       console.log(res)
       this.scrollH=Math.abs(res.y) ;
-       for(var j=0;j<this.list.length;j++){
-         var h1=this.list[j];
-         var h2=this.list[j+1]
-         if(h2 && (this.scrollH>=h1 && this.scrollH<h2)){
-           this.ind=j
-         }
-       }
-     })
+      for(var j=0;j<this.list.length;j++){
+        var h1=this.list[j];
+        var h2=this.list[j+1]
+        if(h2 && (this.scrollH>=h1 && this.scrollH<h2)){
+          this.ind=j
+        }
+      }
+    })
     })
   },
   methods: {
