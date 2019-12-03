@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <div class="select" v-for="(item,index) in list" :key="index">
+    <div class="main" >
+         <div  class="box" ref="scrolllist">
+      <div class="select" v-for="(item,index) in list" :key="index" >
       <div class="top" :id="index">{{item.title}}</div>
       <div class="bottom">
         <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
@@ -9,6 +11,10 @@
         </li>
       </div>
 
+    </div>
+    </div>
+ 
+    
       <!-- 弹窗组件 -->
       <van-popup v-model="show" position="right" :style="{ height: '100%' }">
         <div class="dialog" v-for="(item,index) in carlist" :key="index">
@@ -20,6 +26,7 @@
               </dt>
               <dd>
                 <span>{{val.AliasName}}</span>
+               
                 <b>{{val.DealerPrice}}</b>
               </dd>
             </dl>
@@ -28,9 +35,7 @@
       </van-popup>
 
       <!-- 点击跳转 -->
-      <div class="jump">
-          <a :href="'#'+index" v-for="(item,index) in arrsort" :key="index">{{item}}</a>
-      </div>
+      
     </div>
     <div class="jump">
      <ul>
@@ -42,7 +47,7 @@
 
 <script>
 import BScroll from 'better-scroll'
-import {mapState,mapMutations} from "vuex"
+import {mapState,mapMutations,mapActions} from "vuex"
 export default {
   name: "home",
   components: {},
@@ -51,13 +56,17 @@ export default {
       list: [],  //主页面数据
       carlist: [], //弹层数据
       show: false, //弹层显示隐藏
-      arrsort:[]
+      arrsort:[],
+      left:null,
+      right:null,
+      ind:0,
+      list:[],
+      scrollH:0
     };
   },
-<<<<<<< HEAD
   computed:{
       ...mapState({
-      list: state=>state.home.list
+      list1: state=>state.home.list
     })
   },
   created() {
@@ -100,15 +109,10 @@ export default {
      
         this.left.scrollToElement(children[i],1000)
     },
-=======
-  created() {
-    this.getlist();
-  },
-  methods: {
->>>>>>> 66783649e268db2af67b4bb09752c804f137fd9e
     //跳转详情
     detail(val){ 
-      sessionStorage.setItem('item',JSON.stringify(val))
+      let item=JSON.stringify(val)
+      sessionStorage.setItem('item',item)
       this.$router.push("/details")
     },
     //点击弹窗
@@ -119,7 +123,6 @@ export default {
       );
       this.carlist = res.data.data;
     },
-
     //请求主页面数据
     async getlist() {
       let res = await this.$http.get(
@@ -144,7 +147,6 @@ export default {
       // });
       // console.log(data2);
       // this.list = data2
-
       // 操作数据方法2
       let arrnum= res.data.data.map((item,index)=>{
           return item.Spelling.slice(0,1)
@@ -152,25 +154,20 @@ export default {
       let arrsort= Array.from(new Set(arrnum))
       this.arrsort = arrsort
       let list = res.data.data
-
       let result=[]
-
       arrsort.forEach((item,index)=>{
         let obj = {};
         let arr = [];
         obj.title = item
-
         for(let i = list.length-1;i>=0;i--){
           if(item === list[i].Spelling.slice(0,1)){
               arr.unshift(list[i])
               res.data.data.splice(i,1)
           }
         }
-
         obj.data=[...arr]
         result.push(obj)
       })
-
       this.list=result
     }
   }
@@ -183,10 +180,18 @@ export default {
   height: 100%;
   display: flex;
 }
-
+.main{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.box{
+  width: 100%;
+ 
+}
 .select {
   width: 100%;
-
+  
   .top {
     height: 30px;
     line-height: 30px;
@@ -246,7 +251,6 @@ export default {
     }
   }
 }
-
 .jump{
   position: fixed;
   display: flex;
@@ -256,7 +260,6 @@ export default {
   right: 15px;
   align-items: center;
   text-align: center;
-<<<<<<< HEAD
   font-size: 16px;
   ul{
     li{
@@ -265,18 +268,9 @@ export default {
         color: #f56;
       }
     }
-=======
-  font-size: 12px;
-  a{
-    padding: 2px;
-    color: #666;
->>>>>>> 66783649e268db2af67b4bb09752c804f137fd9e
   }
 }
-
 .van-popup--right {
   width: 75%;
 }
 </style>
-
-
