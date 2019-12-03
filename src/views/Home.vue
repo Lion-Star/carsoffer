@@ -273,9 +273,5 @@ export default {
 .van-popup--right {
   width: 75%;
 }
-<<<<<<< HEAD
 </style>
 
-=======
-</style>
->>>>>>> lailu
