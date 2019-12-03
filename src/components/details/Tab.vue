@@ -19,48 +19,64 @@
 </template>
 
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
-    props:["data"],
     data(){
         return{
             Index:0,//高亮
             year:'全部',//年份
+            tablist:[],
+            nav:['全部']
         }
     },
     computed:{
         ...mapState({
-            nav:state=>state.details.nav,
-            tablist:state=>state.details.tablist,
-            lists:state=>state.details.lists
+            data:state=>state.details.data
         })
     },
-    
     methods:{
-        ...mapMutations({
-            getData:"details/getData"
-        }),
         // tab切换高亮 切换数据
         active(index,year){
             this.Index=index
             this.year=year
             let list=[]
             if(this.year==='全部'){
-                tablist=lists
+                tablist=this.data.list
             }else{
-                lists.map(item=>{
+                this.data.list.map(item=>{
                     if(item.market_attribute.year===year){ 
-                        lists.push(item) 
-                        tablist=lists
+                        this.tablist.push(item) 
                     }
                 })
             }
         },
+        getData(){  
+                console.log(this.data)
+                // tab数据
+                // console.log(this.data)
+                // let market_attribute=[]
+                // this.data.list.filter(item=>{
+                //     market_attribute.push(item.market_attribute)
+                // })
+                // //年份
+                // let year=[]
+                // market_attribute.filter(item=>{
+                //     year.push(item.year)
+                // })
+                // year.filter((item,index)=>{
+                //     if(this.nav.indexOf(item)===-1){
+                //         this.nav.push(item)
+                //     }  
+                // }) 
+                // // 耗油排序
+                // this.tablist=this.data.list
+                // this.tablist.sort((a,b)=>{
+                //     return ( a.exhaust - b.exhaust || a.max_power - b.max_power || a.market_attribute.year - b.market_attribute.year)
+                // })
+        }
     },
-    mounted(){
-        console.log(this.data);
-        
-        this.getData(this.data)
+    created(){
+        this.getData()
     }
 }
 </script>
