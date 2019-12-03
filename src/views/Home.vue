@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <div class="main" >
-         <div  class="box" ref="scrolllist">
-      <div class="select" v-for="(item,index) in list" :key="index" >
+    <div class="select" v-for="(item,index) in list" :key="index">
       <div class="top" :id="index">{{item.title}}</div>
       <div class="bottom">
         <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
@@ -11,10 +9,6 @@
         </li>
       </div>
 
-    </div>
-    </div>
- 
-    
       <!-- 弹窗组件 -->
       <van-popup v-model="show" position="right" :style="{ height: '100%' }">
         <div class="dialog" v-for="(item,index) in carlist" :key="index">
@@ -26,7 +20,6 @@
               </dt>
               <dd>
                 <span>{{val.AliasName}}</span>
-               
                 <b>{{val.DealerPrice}}</b>
               </dd>
             </dl>
@@ -35,7 +28,9 @@
       </van-popup>
 
       <!-- 点击跳转 -->
-      
+      <div class="jump">
+          <a :href="'#'+index" v-for="(item,index) in arrsort" :key="index">{{item}}</a>
+      </div>
     </div>
     <div class="jump">
      <ul>
@@ -56,14 +51,10 @@ export default {
       list: [],  //主页面数据
       carlist: [], //弹层数据
       show: false, //弹层显示隐藏
-      arrsort:[],
-      left:null,
-      right:null,
-      ind:0,
-      list:[],
-      scrollH:0
+      arrsort:[]
     };
   },
+<<<<<<< HEAD
   computed:{
       ...mapState({
       list: state=>state.home.list
@@ -109,10 +100,15 @@ export default {
      
         this.left.scrollToElement(children[i],1000)
     },
+=======
+  created() {
+    this.getlist();
+  },
+  methods: {
+>>>>>>> 66783649e268db2af67b4bb09752c804f137fd9e
     //跳转详情
     detail(val){ 
-      let item=JSON.stringify(val)
-      sessionStorage.setItem('item',item)
+      sessionStorage.setItem('item',JSON.stringify(val))
       this.$router.push("/details")
     },
     //点击弹窗
@@ -187,18 +183,10 @@ export default {
   height: 100%;
   display: flex;
 }
-.main{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.box{
-  width: 100%;
- 
-}
+
 .select {
   width: 100%;
-  
+
   .top {
     height: 30px;
     line-height: 30px;
@@ -268,6 +256,7 @@ export default {
   right: 15px;
   align-items: center;
   text-align: center;
+<<<<<<< HEAD
   font-size: 16px;
   ul{
     li{
@@ -276,6 +265,12 @@ export default {
         color: #f56;
       }
     }
+=======
+  font-size: 12px;
+  a{
+    padding: 2px;
+    color: #666;
+>>>>>>> 66783649e268db2af67b4bb09752c804f137fd9e
   }
 }
 

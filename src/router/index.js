@@ -27,6 +27,7 @@ const routes = [
         path: "*",
         redirect: "/home"
     }
+    
 ]
 
 const router = new VueRouter({
