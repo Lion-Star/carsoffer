@@ -1,17 +1,16 @@
 <template>
   <div class="home">
     <div class="main" >
-         <div  class="box" ref="scrolllist">
-      <div class="select" v-for="(item,index) in list" :key="index" >
-      <div class="top" :id="index">{{item.title}}</div>
-      <div class="bottom">
-        <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
-          <img :src="val.CoverPhoto" />
-          <span>{{val.Name}}</span>
-        </li>
+      <div  class="box" ref="scrolllist">
+        <div class="select" v-for="(item,index) in list" :key="index">
+        <div class="top" :id="index">{{item.title}}</div>
+        <div class="bottom">
+          <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
+            <img :src="val.CoverPhoto" />
+            <span>{{val.Name}}</span>
+          </li>
+        </div>
       </div>
-
-    </div>
     </div>
  
     
@@ -33,13 +32,11 @@
           </div>
         </div>
       </van-popup>
-
-      <!-- 点击跳转 -->
-      
     </div>
+    <!-- 点击跳转 -->
     <div class="jump">
      <ul>
-       <li v-for="(item,index) in arrsort" :key="index" :class='{"active":ind==index}' @click='handclick(index)'>{{item}}</li>
+       <li v-for="(item,index) in list" :key="index" :class='{"active":ind==index}' @click='handclick(index)'>{{item.title}}</li>
      </ul>
     </div>
   </div>
@@ -53,49 +50,49 @@ export default {
   components: {},
   data() {
     return {
-      list: [],  //主页面数据
-      carlist: [], //弹层数据
       show: false, //弹层显示隐藏
       arrsort:[],
       left:null,
       right:null,
       ind:0,
-      list:[],
       scrollH:0
     };
   },
   computed:{
       ...mapState({
-      list1: state=>state.home.list
+      list: state=>state.home.list,
+      carlist:state=>state.home.carlist,
     })
   },
   created() {
-    this.getlist();
     this.$nextTick(()=>{
-    this.scrollHeight();
-    this.left=new BScroll('.main',{
-      click:true,
-      probeType:2
-    })
-     this.left.on("scroll",(res)=>{
+      this.scrollHeight();
+      this.left=new BScroll('.main',{
+        click:true,
+        probeType:2
+      })
+      this.left.on("scroll",(res)=>{
       this.scrollH=Math.abs(res.y) ;
-      for(var j=0;j<this.list.length;j++){
-        var h1=this.list[j];
-        var h2=this.list[j+1]
-        if(h2 && (this.scrollH>=h1 && this.scrollH<h2)){
-          this.ind=j
+        for(var j=0;j<this.list.length;j++){
+          var h1=this.list[j];
+          var h2=this.list[j+1]
+          if(h2 && (this.scrollH>=h1 && this.scrollH<h2)){
+            this.ind=j
+          }
         }
-      }
+      })
     })
-    })
+  },
+  mounted(){
+    this.getMasterBrandList()
   },
   methods: {
     ...mapActions({
-      getMasterBrandList: 'home/getMasterBrandList'
+      getMasterBrandList: 'home/getMasterBrandList',
+      getMakeListByMasterBrandId:'home/getMakeListByMasterBrandId'
     }),
     scrollHeight(){
       let children=this.$refs.scrolllist.children //获取到每个子元素
-      console.log(children)
       let height = 0
       this.list.push(height)
       for(var i=0;i<children.length;i++){
@@ -104,10 +101,9 @@ export default {
       }
     },
     handclick(i){
-       this.ind=i;
-        var children=this.$refs.scrolllist.children;
-     
-        this.left.scrollToElement(children[i],1000)
+      this.ind=i;
+      var children=this.$refs.scrolllist.children;
+      this.left.scrollToElement(children[i],1000)
     },
     //跳转详情
     detail(val){ 
@@ -118,57 +114,11 @@ export default {
     //点击弹窗
     async showPopup(id) {
       this.show = true;
-      let res = await this.$http.get(
-        `https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${id}`
-      );
-      this.carlist = res.data.data;
-    },
-    //请求主页面数据
-    async getlist() {
-      let res = await this.$http.get(
-        "https://baojia.chelun.com/v2-car-getMasterBrandList.html"
-      );
-      res.data.data.forEach((item, index) => {
-        item.title = item.Spelling.slice(0, 1);
-      });
-     
-      //操作数据方法 1
-      // let data2 = [];
-      // res.data.data.filter(item => {
-      //   if (data2.findIndex(val => item.title == val.title) == -1) {
-      //     data2.push({
-      //       title:item.title
-      //     });
-      //   }
-      // });
-      
-      // data2.forEach((item, index) => {
-      //   item.data = res.data.data.filter(val => val.Spelling.slice(0,1) == item.title);
-      // });
-      // console.log(data2);
-      // this.list = data2
-      // 操作数据方法2
-      let arrnum= res.data.data.map((item,index)=>{
-          return item.Spelling.slice(0,1)
-      })
-      let arrsort= Array.from(new Set(arrnum))
-      this.arrsort = arrsort
-      let list = res.data.data
-      let result=[]
-      arrsort.forEach((item,index)=>{
-        let obj = {};
-        let arr = [];
-        obj.title = item
-        for(let i = list.length-1;i>=0;i--){
-          if(item === list[i].Spelling.slice(0,1)){
-              arr.unshift(list[i])
-              res.data.data.splice(i,1)
-          }
-        }
-        obj.data=[...arr]
-        result.push(obj)
-      })
-      this.list=result
+      this.getMakeListByMasterBrandId(id)
+      // let res = await this.$http.get(
+      //   `https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${id}`
+      // );
+      // this.carlist = res.data.data;
     }
   }
 };
@@ -189,16 +139,17 @@ export default {
   width: 100%;
  
 }
-.select {
-  width: 100%;
-  
-  .top {
+ .top {
+    font-size: .32rem;
     height: 30px;
     line-height: 30px;
     background: #eee;
     color: #666;
     padding-left: 12px;
   }
+.select {
+  width: 100%;
+ 
   .bottom {
     width: 100%;
     li {

@@ -1,7 +1,14 @@
-import request from "@/utils/request";
+import request from '@/utils/request';
 
-//获取首页列表
+// 获取首页品牌列表
 
-module.exports = getMasterBrandList => {
+
+
+
+export let getMasterBrandList = () => {
     return request('/v2-car-getMasterBrandList.html')
+}
+
+export let getMakeListByMasterBrandId = (id) => {
+    return request(`v2-car-getMakeListByMasterBrandId.html?MasterID=${id}`)
 }
