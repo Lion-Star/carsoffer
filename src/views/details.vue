@@ -20,14 +20,9 @@
                 <li v-for="(item,index) in nav" :key="index" @click="active(index,item)" :class="index===Index?'active':''">{{item}}</li>
             </div>
             <!-- 下面渲染 -->
-            <div class="block" v-for="(item,index) in data.list" :key="index">
-                <ul v-if="item.market_attribute.year===year">
-                    <li>{{item.market_attribute.year}}款 {{item.car_name}}</li>
-                    <li>{{item.horse_power}}马力{{item.gear_num}}档{{item.trans_type}}</li>
-                    <li><span>{{item.market_attribute.dealer_price_min}}起</span><span>指导价{{item.market_attribute.dealer_price_max}}</span></li>
-                    <li><button>询问低价</button></li>
-                </ul>
-                <ul v-if="year==='全部'">
+            <div class="block" v-for="(item,index) in list" :key="index">
+                <p>{{item.exhaust_str}}{{item.max_power_str}}</p>
+                <ul>
                     <li>{{item.market_attribute.year}}款 {{item.car_name}}</li>
                     <li>{{item.horse_power}}马力{{item.gear_num}}档{{item.trans_type}}</li>
                     <li><span>{{item.market_attribute.dealer_price_min}}起</span><span>指导价{{item.market_attribute.dealer_price_max}}</span></li>
@@ -47,11 +42,12 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            nav:['全部'],
-            data:[],
-            item:'',
-            Index:0,
-            year:'全部'
+            nav:['全部'],//nav
+            data:[],//总数据
+            item:'',//数据接口数据
+            Index:0,//高亮
+            year:'全部',//年份
+            list:[]//tab切换数据
         }
         
     },
@@ -59,7 +55,18 @@ export default {
         // tab切换高亮
         active(index,item){
             this.Index=index
-            this.year=item
+            let list =[]
+            this.data.list.forEach(item=>{
+                
+                if(item.market_attribute.year===item){
+                    list.push(item)
+                    this.list=list
+                    console.log(item.market_attribute.year)
+                }else{
+                    list.push(item)
+                    this.list=list
+                }
+            })
         },
         //请求总数据
         getlist(){
@@ -74,6 +81,7 @@ export default {
                 this.data.list.filter(item=>{
                     market_attribute.push(item.market_attribute)
                 })
+                //年份
                 let year=[]
                 market_attribute.filter(item=>{
                     year.push(item.year)
@@ -81,17 +89,18 @@ export default {
                 year.filter((item,index)=>{
                     if(this.nav.indexOf(item)===-1){
                         this.nav.push(item)
-                    }
-                    
+                    }  
+                })   
+                //耗油排序
+                this.data.list.sort((a,b)=>{
+                    return ( a.exhaust - b.exhaust || a.max_power - b.max_power || a.market_attribute.year - b.market_attribute.year)
                 })
-                console.log(this.nav)
             })
         }
     },
     created(){
          this.item=JSON.parse(sessionStorage.getItem('item'))
          this.getlist()
-
     }
 }
 </script>
@@ -143,12 +152,15 @@ export default {
                 }
             }
             .titright{
-                padding-right: 20px;
+                padding-right: 1%;
                 button{
-                    width: 90px;
+                    margin-top: 5%;
+                    width: 160px;
                     height: 30px;
                     outline: none;
                     border: 0;
+                    font-size: 14px;
+                    line-height: 30px;
                     background: #3AACFF;
                     border-radius: 3px;
                     color: #fff;
@@ -159,7 +171,7 @@ export default {
 }
 .main{
     width: 100%;
-    height: 55%;
+    padding-bottom: 50px;
     .nav{
         width: 100%;
         height: 30px;
@@ -177,21 +189,25 @@ export default {
     }
     .block{
         width: 100%;
-        height: 100px;
-        background: #fff;
-        margin-top: 20px;
+        height: 120px;
+        background: #ffffff;
         display: flex;
         flex-direction: column;
         font-size: 12px;
         color: #ccc;
+        
+        p{
+            background: #eeeeee;
+            padding:0 8px;
+        }
         ul{
+            padding:0 8px;
             list-style: none;
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             li{
-                padding: 0 10px;
                 line-height:21px;
             }
             li:nth-child(1){
