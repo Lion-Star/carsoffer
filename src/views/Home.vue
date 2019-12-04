@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getMasterBrandList: 'home/getMasterBrandList',
+      getMasterBrandList:'home/getMasterBrandList',
       getMakeListByMasterBrandId:'home/getMakeListByMasterBrandId'
     }),
     //跳转详情

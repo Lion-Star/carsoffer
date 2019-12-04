@@ -1,7 +1,7 @@
 <template>
     <div class="main">
             <!-- 数据切换 -->
-            
+                    
                 <div class="nav">
                     <li v-for="(item,index) in nav" :key="index" @click="active(index,item)" :class="index===Index?'active':''">{{item}}</li>
                 </div>
@@ -19,9 +19,8 @@
 </template>
 
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
-    props:["data"],
     data(){
         return{
             Index:0,//高亮
@@ -35,32 +34,23 @@ export default {
             lists:state=>state.details.lists
         })
     },
-    
     methods:{
-        ...mapMutations({
-            getData:"details/getData"
-        }),
         // tab切换高亮 切换数据
         active(index,year){
             this.Index=index
             this.year=year
             let list=[]
             if(this.year==='全部'){
-                tablist=lists
+                this.tablist=this.lists
             }else{
-                lists.map(item=>{
+                this.lists.map(item=>{
                     if(item.market_attribute.year===year){ 
-                        lists.push(item) 
-                        tablist=lists
+                        this.lists.push(item) 
+                        this.tablist=this.lists
                     }
                 })
             }
         },
-    },
-    mounted(){
-        console.log(this.data);
-        
-        this.getData(this.data)
     }
 }
 </script>
