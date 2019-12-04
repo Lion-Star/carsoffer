@@ -18,10 +18,16 @@ const routes = [
             import ("../views/details.vue")
     },
     {
+        path: '/asklowprice',
+        name: 'asklowprice',
+        component: () =>
+            import ("../views/asklowprice.vue")
+    },
+    {
         path: "*",
         redirect: "/home"
     }
-    
+
 ]
 
 const router = new VueRouter({
