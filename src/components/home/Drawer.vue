@@ -60,10 +60,13 @@ export default  {
   flex-direction: column;
   top: 50%;
   transform: translate(48%,-50%);
-  right: 15px;
+  right: .16rem;
+  color: #999;
   align-items: center;
   text-align: center;
-  font-size: 16px;li{
+  font-size: .30rem;
+  padding: 2px;
+  li{
       list-style: none;
       &.active{
         color: #f56;
