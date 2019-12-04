@@ -1,10 +1,7 @@
-import request from '@/utils/request';
+import request from '@/utils/request'; //axios 的二次封装
+
 
 // 获取首页品牌列表
-
-
-
-
 export let getMasterBrandList = () => {
     return request('/v2-car-getMasterBrandList.html')
 }

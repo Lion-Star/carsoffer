@@ -119,7 +119,7 @@ export default {
       display: flex;
       line-height: .80rem;
       margin: .30rem;
-      border-bottom: 1px solid #ccc;
+      border-bottom: .01rem solid #ccc;
       img {
         width: 20%;
         height: 100%;
@@ -136,7 +136,7 @@ export default {
   display: flex;
   padding: .20rem;
   color: #333;
-  border-bottom: .1rem solid #ccc;
+  border-bottom: .01rem solid #ccc;
   dl {
     display: flex;
     width: 100%;

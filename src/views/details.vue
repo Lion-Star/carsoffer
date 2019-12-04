@@ -1,7 +1,7 @@
 <template>
     <div class="warp">
         <div class="imgs">
-             <img :src="data.CoverPhoto" alt="">
+             <img :src="data.Picture" alt="">
                 <div class="title">
                     <div class="tit">
                         <div class="titleft">

@@ -6,7 +6,7 @@ const state = {
 }
 
 const mutations = {
-    getCarlist(state, payload) {
+    getCarlist(state, payload) { // 抽屉的数据
         state.carlist = payload
     },
     getlist(state, payload) { //得到主页面数据并且处理
