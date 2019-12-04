@@ -98,17 +98,16 @@ export default {
   height: 100%;
 }
 .box{
-  width: 100%;
+ width: 100%;
  height: 100%;
  overflow-y: scroll
 }
 .top {
   font-size: .32rem;
-  height: .60rem;
-  line-height: .60rem;
-  background: #eee;
-  color: #666;
-  padding-left: .24rem;
+  line-height: .4rem;
+  background: #f4f4f4;
+  color: #aaa;
+  padding-left: .3rem;
 }
 .select {
   width: 100%;
@@ -121,8 +120,8 @@ export default {
       margin: .30rem;
       border-bottom: .01rem solid #ccc;
       img {
-        width: 20%;
-        height: 100%;
+        width: 1.2rem;
+        height: .8rem;
         padding-right: .40rem;
       }
     }
@@ -135,7 +134,7 @@ export default {
   width: 100%;
   display: flex;
   padding: .20rem;
-  color: #333;
+  color: #999;
   border-bottom: .01rem solid #ccc;
   dl {
     display: flex;
