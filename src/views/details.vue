@@ -3,7 +3,7 @@
         <!-- 详情上测标题 -->
         <Head :data="data"></Head>
 
-        <Tab :data="data"></Tab>
+        <Tab></Tab>
         
         <div class="fixed">
             <p>询问低价</p>
@@ -16,7 +16,7 @@
 import axios from 'axios'
 import Head from '../components/details/Head'
 import Tab from '../components/details/Tab'
-import { mapState,mapActions, mapMutations } from "vuex";
+import { mapState,mapActions} from "vuex";
 export default {
     data(){
         return{
@@ -34,11 +34,10 @@ export default {
     },
     methods:{
        ...mapActions({getlist:"details/getBaoJia"}),
-     
     },
     created(){
          this.item=JSON.parse(sessionStorage.getItem('item'))
-          this.getlist(this.item.SerialID)
+         this.getlist(this.item.SerialID)
     }
 }
 </script>
@@ -54,12 +53,12 @@ export default {
         position: fixed;
         bottom: 0;
         width: 100%;
-        height: 50px;
+        height: 1rem;
         background: #3AACFF;
-        font-size: 14px;
+        font-size: .29rem;
         color: #fff;
         p{
-            padding-top: 4px;
+            padding-top: .1rem;
             text-align: center;
         }
     }
