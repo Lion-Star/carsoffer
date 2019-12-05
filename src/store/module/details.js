@@ -49,18 +49,18 @@ function createTabList(list) {
         }
     })
     return newList
-
 }
 
 function getTabData(data) {
 
-    state.tabData = data
+    state.tabData = data;
 
-    state.yearList = ["全部"]
-        //拿到年份tab
+    state.yearList = ["全部"];
+    //拿到年份tab
     let year = data.list.map(item => item.market_attribute.year);
 
-    let arr = [...new Set(year)]
+    let arr = [...new Set(year)];
+
     state.yearList = state.yearList.concat(arr);
 
 
@@ -73,11 +73,9 @@ function getTabData(data) {
         currentList = data.list.filter(item => item.market_attribute.year == state.yearTab);
     }
 
-    console.log(currentList);
-
     // 3.给当前年份数据排序
     currentList = tabListSort(currentList);
-    console.log(currentList);
+
     // 4.聚合key相同的车款数据
     currentList = createTabList(currentList);
 
@@ -86,20 +84,18 @@ function getTabData(data) {
 
 const mutations = {
     getlist(state, payload) {
-        state.data = payload
-        getTabData(state.data)
+        state.data = payload;
+        getTabData(state.data);
     },
     changeYearList(state, payload) {
-        state.yearTab = payload
-        getTabData(state.data)
+        state.yearTab = payload;
+        getTabData(state.data);
     }
-
 }
 
 const actions = {
     async getBaoJia({ commit }, payload) {
         let res = await getBaoJia(payload)
-        let data = res.data
         commit('getlist', res.data)
     }
 }

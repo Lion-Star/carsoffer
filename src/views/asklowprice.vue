@@ -15,6 +15,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.ask-dialog{
+  width: 100%;
+  height: 100%;
+}
 </style>

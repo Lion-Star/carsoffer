@@ -6,16 +6,25 @@ Vue.use(VueRouter)
 const routes = [
 
     {
+        // 主页
         path: '/home',
         name: 'home',
         component: () =>
             import ("../views/Home.vue")
     },
     {
+        //详情页
         path: '/details',
         name: 'details',
         component: () =>
-            import ("../views/details.vue")
+            import ("../views/Details.vue")
+    },
+    {
+        //图片页
+        path: '/picture',
+        name: 'picture',
+        component: () =>
+            import ("../views/Picture.vue")
     },
     {
         path: '/asklowprice',

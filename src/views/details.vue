@@ -4,9 +4,8 @@
     <Head :data="data"></Head>
     <!-- tab切换组件 -->
     <Tab></Tab>
-
     <div class="fixed">
-      <p>询问低价</p>
+      <p @click="$router.push(`/asklowprice`)">询问低价</p>
       <p>本地营销商为你售价</p>
     </div>
   </div>
@@ -15,12 +14,12 @@
 <script>
 import Head from "../components/details/Head";
 import Tab from "../components/details/Tab";
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
       item: "" //数据接口数据
-    };
+    }
   },
   components: {
     Head,

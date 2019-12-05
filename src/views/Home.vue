@@ -14,7 +14,7 @@
     <!-- 弹窗组件 -->
     <van-popup v-model="show" position="right" :style="{ height: '100%' }">
       <div class="dialog" v-for="(item,index) in carlist" :key="index">
-        <div class="top">{{item.GroupName}}</div>
+        <div class="v-top">{{item.GroupName}}</div>
         <div class="c-bottom" v-for="(val,i) in item.GroupList" :key="i">
           <dl @click="detail(val)">
             <dt>
@@ -115,7 +115,8 @@ export default {
       height: 0.8rem;
       display: flex;
       line-height: 0.8rem;
-      margin: 0.3rem;
+      margin: 0.12rem 0.6rem 0.12rem 0.3rem;
+      padding-bottom: 0.87rem;
       border-bottom: 0.01rem solid #ccc;
       img {
         width: 1.2rem;
@@ -132,19 +133,20 @@ export default {
   width: 100%;
   display: flex;
   padding: 0.2rem;
-  color: #999;
+  color: #5f687a;
   border-bottom: 0.01rem solid #ccc;
   dl {
     display: flex;
     width: 100%;
     dd {
+      width:65% ;
       height: 100%;
       padding-left: 0.1rem;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       span {
-        font-size: 0.36rem;
+        font-size: .34rem;
       }
       b {
         color: #f00;
@@ -153,13 +155,23 @@ export default {
       }
     }
     dt {
-      width: 40%;
-      height: 100%;
+      width: 35%;
+      height: 1.2rem;
       img {
         width: 1.8rem;
+        height: 1.2rem;
       }
     }
   }
+}
+.v-top{
+  width: 100%;
+  margin-left: 1px;
+  font-size: .28rem;
+  line-height: .48rem;
+  background: #f2f2f2;
+  padding-left: .3rem;
+  color: #717171;
 }
 
 .van-popup--right {
