@@ -1,6 +1,6 @@
 <template>
     <div class="imgs">
-        <div class="image">
+        <div class="image" @click="toImg">
             <img :src="data.CoverPhoto" alt="">
             <span>999张图片</span>
         </div>
@@ -20,14 +20,20 @@
 
 <script>
 export default {
-  props: ["data"]
+  props: ["data"],
+  methods:{
+      toImg(){
+          sessionStorage.setItem('SerialID',this.data.SerialID)
+          this.$router.push(`/img?SerialID=${this.data.SerialID}`)
+      }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .imgs {
   width: 100%;
-  height: 35%;
+  height: 38%;
   position: relative;
     .image{
         width: 100%;

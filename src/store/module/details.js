@@ -70,7 +70,6 @@ function ifList(data){
 const mutations = {
     //总数据获取
     getlist(state,payload){
-        console.log("2")
         if(payload.code === 1){
             //判断排序数据
             ifList(payload.data)

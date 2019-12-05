@@ -1,29 +1,28 @@
 <template>
   <div class="main">
     <!-- 数据切换 -->
-
     <div class="nav">
-      <li
-        v-for="(item,index) in yearNav"
-        :key="index"
-        @click="active(index,item)"
-        :class="index===Index?'active':''"
-      >{{item}}</li>
+        <li
+            v-for="(item,index) in yearNav"
+            :key="index"
+            @click="active(index,item)"
+            :class="index===Index?'active':''"
+            >{{item}}</li>
     </div>
     <!-- 下面渲染 -->
     <div class="block" v-for="(item,index) in tablist" :key="index">
       <p>{{item.key}}</p>
       <div class="text" v-for="(val,index) in item.list" :key="index">
-        <ul>
-          <li>{{val.market_attribute.year}}款 {{val.car_name}}</li>
-          <li>{{val.horse_power}}马力{{val.gear_num}}档{{val.trans_type}}</li>
-          <li>
-            <span>{{val.market_attribute.dealer_price_min}}起</span>
-            <span>指导价{{val.market_attribute.dealer_price_max}}</span>
-          </li>
-        </ul>
-        <button>询问低价</button>
-        <p v-show="index!==item.list.length-1"></p>
+            <ul>
+                <li>{{val.market_attribute.year}}款 {{val.car_name}}</li>
+                <li>{{val.horse_power}}马力{{val.gear_num}}档{{val.trans_type}}</li>
+                <li>
+                    <span>{{val.market_attribute.dealer_price_min}}起</span>
+                    <span>指导价{{val.market_attribute.dealer_price_max}}</span>
+                </li>
+            </ul>
+            <button>询问低价</button>
+            <p v-show="index!==item.list.length-1"></p>
       </div>
     </div>
   </div>
@@ -93,32 +92,32 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-    ul {
-    width: 100%;
-    height: 100%;
-    padding: 0 0.2rem;
-    li {
-        line-height: 0.4rem;
-    }
-    li:nth-child(1) {
-        padding-top: 0.2rem;
-        font-size: 0.3rem;
-        text-decoration: none;
-        color: #000;
-    }
-    li:nth-child(2) {
-        padding-top: 0.15rem;
-    }
-    li:nth-child(3) {
-        display: flex;
-        flex-direction: row-reverse;
-        color: #818181;
-            span:nth-child(1) {
-            color: red;
-            margin-left: 0.2rem;
+        ul {
+        width: 100%;
+        height: 100%;
+        padding: 0 0.2rem;
+        li {
+            line-height: 0.4rem;
+        }
+        li:nth-child(1) {
+            padding-top: 0.2rem;
             font-size: 0.3rem;
-            }
-    }
+            text-decoration: none;
+            color: #000;
+        }
+        li:nth-child(2) {
+            padding-top: 0.15rem;
+        }
+        li:nth-child(3) {
+            display: flex;
+            flex-direction: row-reverse;
+            color: #818181;
+                span:nth-child(1) {
+                color: red;
+                margin-left: 0.2rem;
+                font-size: 0.3rem;
+                }
+        }
     }
     button {
     width: 100%;

@@ -17,11 +17,6 @@ import Head from '../components/details/Head'
 import Tab from '../components/details/Tab'
 import { mapState,mapActions} from "vuex";
 export default {
-    data(){
-        return{
-            item:'',//数据接口数据
-        }  
-    },
     components:{
         Head,
         Tab
@@ -35,8 +30,8 @@ export default {
        ...mapActions({getlist:"details/getBaoJia"}),
     },
     created(){
-         this.item=JSON.parse(sessionStorage.getItem('item'))
-         this.getlist(this.item.SerialID)
+        //数据接口传参
+         this.getlist(JSON.parse(sessionStorage.getItem('item')).SerialID)
     }
 }
 </script>

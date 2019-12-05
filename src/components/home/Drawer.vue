@@ -1,12 +1,12 @@
 <template>
   <div class="drawer"
-  ref="ele"
-  @touchstart="touchStart"
-  @touchmove="touchMove"
-  @touchend="touchEnd"
-  >
-    <li v-for="(item,index) in list" :key="index">{{item.title}}</li>
-  </div>
+    ref="ele"
+    @touchstart="touchStart"
+    @touchmove="touchMove"
+    @touchend="touchEnd"
+    >
+        <li v-for="(item,index) in list" :key="index">{{item.title}}</li>
+    </div>
 </template>
 
 <script>

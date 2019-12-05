@@ -24,6 +24,12 @@ const routes = [
             import ("../views/asklowprice.vue")
     },
     {
+        path: '/img',
+        name: 'img',
+        component: () =>
+            import ("../views/Img.vue")
+    },
+    {
         path: "*",
         redirect: "/home"
     }
