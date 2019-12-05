@@ -118,7 +118,7 @@ export default {
         background: #fff;
         outline: none;
         line-height: 35px;
-        border: 0;
+        border: none;
         color: #3aacff;
         border-top: 0.06rem solid #f4f4f4;
       }

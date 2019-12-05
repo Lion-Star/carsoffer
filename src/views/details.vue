@@ -36,10 +36,7 @@ export default {
   },
   created() {
     this.item = JSON.parse(sessionStorage.getItem("item"));
-
     this.getlist(this.item.SerialID);
-
-    console.log(this.data);
   }
 };
 </script>
