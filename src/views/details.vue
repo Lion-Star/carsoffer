@@ -1,8 +1,9 @@
+
 <template>
     <div class="warp">
         <!-- 详情上测标题 -->
          <Head :data="data"></Head>
-
+        <!-- tab切换 -->
         <Tab></Tab>
         
         <div class="fixed">
@@ -11,7 +12,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import axios from 'axios'
 import Head from '../components/details/Head'

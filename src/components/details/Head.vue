@@ -17,10 +17,7 @@
 
 <script>
 export default {
-    props:['data'],
-    methods:{
-       
-    }
+    props:['data']
 }
 </script>
 

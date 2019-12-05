@@ -1,7 +1,7 @@
 <template>
     <div class="main">
             <!-- 数据切换 -->
-            
+                    
                 <div class="nav">
                     <li v-for="(item,index) in nav" :key="index" @click="active(index,item)" :class="index===Index?'active':''">{{item}}</li>
                 </div>
