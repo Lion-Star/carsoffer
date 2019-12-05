@@ -1,4 +1,4 @@
-import {getBaoJia} from '@/services/index.js'
+import { getBaoJia } from '@/services/index.js'
 
 const state = {
     data: [],//原数据
@@ -82,6 +82,7 @@ const mutations = {
         state.year=payload
         ifList(state.data)
     }
+
 }
 
 const actions = {

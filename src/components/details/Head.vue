@@ -20,17 +20,15 @@
 
 <script>
 export default {
-    props:['data'],
-    methods:{
-       
-    }
+  props: ["data"]
 }
 </script>
 
 <style lang="scss" scoped>
-.imgs{
-    width: 100%;
-    height: 35%;
+.imgs {
+  width: 100%;
+  height: 35%;
+  position: relative;
     .image{
         width: 100%;
         height: 70%;
@@ -90,5 +88,6 @@ export default {
             }
         }
     }
+  
 }
 </style>

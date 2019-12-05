@@ -1,15 +1,14 @@
 <template>
-    <div class="warp">
+  <div class="warp">
         <!-- 详情上测标题 -->
         <Head :data="data"></Head>
-
+        <!-- tab切换组件 -->
         <Tab></Tab>
-        
         <div class="fixed">
             <p>询问低价</p>
             <p>本地营销商为你售价</p>
         </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -43,12 +42,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.warp{
-    width: 100%;
-    height: 100%;
-    background: #eeeeee;
-    position: relative;
-    overflow-y: auto;
+.warp {
+  width: 100%;
+  height: 100%;
+  background: #eeeeee;
+  position: relative;
+  overflow-y: auto;
     .fixed{
         position: fixed;
         bottom: 0;
