@@ -1,28 +1,6 @@
 import { getBaoJia } from '@/services/index.js'
 
 const state = {
-<<<<<<< HEAD
-    data: [],
-    nav: ['全部'], //nav
-    lists: [], //tab切换数据
-    tablist: []
-}
-
-const mutations = {
-    getlist(state, payload) {
-        state.data = payload
-
-    },
-    
-}
-
-const actions = {
-    async getBaoJia({ commit }, payload) {
-        let res = await getBaoJia(payload)
-        commit('getlist', res.data)
-        commit('getData', res.data)
-    }
-=======
     data: [],//原数据
     yearNav:['全部'],//nav所有年份
     tablist:[],//当前年份数据
@@ -111,7 +89,6 @@ const actions = {
        let res = await getBaoJia(payload)
        commit('getlist',res)
    }
->>>>>>> lailu
 }
 
 export default {

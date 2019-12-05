@@ -2,13 +2,8 @@
 <template>
     <div class="warp">
         <!-- 详情上测标题 -->
-<<<<<<< HEAD
          <Head :data="data"></Head>
         <!-- tab切换 -->
-=======
-        <Head :data="data"></Head>
-
->>>>>>> lailu
         <Tab></Tab>
         
         <div class="fixed">
