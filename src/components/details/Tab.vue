@@ -16,12 +16,13 @@
         <li>{{val.market_attribute.year}} 款&nbsp;{{val.car_name}}</li>
         <li>{{val.horse_power}}马力{{val.gear_num}}档{{val.trans_type}}</li>
         <li>
-          <span>&nbsp;&nbsp;&nbsp;{{val.market_attribute.dealer_price_min}}&nbsp;&nbsp;&nbsp;</span>
+          <span>&nbsp;&nbsp;&nbsp;{{val.market_attribute.dealer_price_min}}起&nbsp;&nbsp;&nbsp;</span>
           指导价 &nbsp;&nbsp;&nbsp;{{val.market_attribute.official_refer_price}}
         </li>
-        <button>询问底价</button>
+        <button @click="$router.push('/asklowprice')">询问底价</button>
       </div>
     </div>
+    <div class="empty"></div>
   </div>
 </template>
 
@@ -42,12 +43,12 @@ export default {
   },
   methods: {
     ...mapMutations({
-        changeYearList:"details/changeYearList"
+      changeYearList: "details/changeYearList"
     }),
     //tab切换高亮 切换数据
-    active(index,year){
-        this.Index=index
-        this.changeYearList(year)
+    active(index, year) {
+      this.Index = index;
+      this.changeYearList(year);
     }
   }
 };
@@ -58,7 +59,7 @@ export default {
   width: 100%;
   .nav {
     width: 100%;
-    height: 46px;
+    height: 0.92rem;
     background: #fff;
     display: flex;
     align-items: center;
@@ -66,15 +67,15 @@ export default {
       color: #3aacff;
     }
     li {
-      margin: 0 10px;
-      font-size: 15px;
+      margin: 0 0.2rem;
+      font-size: 0.3rem;
     }
   }
   .block {
     width: 100%;
     display: flex;
     flex-direction: column;
-    font-size: 12px;
+    font-size: 0.24rem;
     border: none;
     p {
       padding: 0 0.2rem;
@@ -90,7 +91,7 @@ export default {
       border-bottom: 0.1rem solid #f4f4f4;
       li {
         font-size: 0.29rem;
-        padding: 0.24rem 0 0 0.24rem;
+        padding: 0.22rem 0 0 0.22rem;
         font-weight: 348;
         color: #3d3d3d;
         span {
@@ -113,16 +114,19 @@ export default {
       }
       button {
         font-size: 0.32rem;
-        margin-top: 5px;
+        margin-top: 0.1rem;
         width: 100%;
         background: #fff;
         outline: none;
-        line-height: 35px;
-        border: 0;
+        line-height: 0.7rem;
+        border: none;
         color: #3aacff;
         border-top: 0.06rem solid #f4f4f4;
       }
     }
+  }
+  .empty {
+    height: 1rem;
   }
 }
 </style>

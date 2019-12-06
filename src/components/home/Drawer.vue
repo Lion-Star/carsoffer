@@ -64,10 +64,12 @@ export default  {
   color: #999;
   align-items: center;
   text-align: center;
-  font-size: .30rem;
-  padding: 2px;
+  font-size: .22rem;
+  margin-right: .06rem;
   li{
       list-style: none;
+      padding: .06rem;
+      color: #666;
       &.active{
         color: #f56;
       }
