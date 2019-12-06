@@ -30,7 +30,7 @@ const routes = [
         path: '/asklowprice',
         name: 'asklowprice',
         component: () =>
-            import ("../views/asklowprice.vue")
+            import ("../views/Asklowprice.vue")
     },
     {
         path: "*",
