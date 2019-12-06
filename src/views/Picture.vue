@@ -3,7 +3,7 @@
     <div class="navTitle">
       <span @click="setColor">颜色</span>
       <span>|</span>
-      <span>车款</span>
+      <span @click="setCar">车款</span>
     </div>
 
     <div class="content">
@@ -19,6 +19,11 @@
 
     <transition name="scroll-top">
       <Color v-if="showColor" :SerialID="SerialID" :showColor.sync="showColor"></Color>
+      
+    </transition>
+    
+    <transition name="scroll-top-c">
+      <Car v-if="showCar" :SerialID="SerialID" :showCar.sync="showCar"></Car>
     </transition>
   </div>
 </template>
@@ -26,15 +31,17 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import Color from "@/components/Color/Color.vue";
+import Car from "@/components/Color/Car.vue";
 export default {
   data() {
     return {
       SerialID: "",
-      showColor: false
+      showColor: false,
+      showCar:false
     };
   },
   components: {
-    Color
+    Color,Car
   },
   computed: {
     ...mapState({
@@ -47,14 +54,20 @@ export default {
       getImageList: "picture/getImageList"
     }),
     setColor() {
+      console.log('1111');
+      
       this.showColor = true;
+    },
+    setCar(){
+     
+      
+      this.showCar = true;
     }
   },
   created() {
     //路由接收参数
     this.SerialID = this.$route.query.SerialID;
     //调用接口获取图片列表
-    console.log(this.$route.query);
     this.getImageList(this.SerialID);
   }
 };
@@ -62,11 +75,15 @@ export default {
 
 <style lang="scss" scoped>
 .scroll-top-enter,
-.scroll-top-leave-to {
+.scroll-top-leave-to,
+.scroll-top-c-enter,
+.scroll-top-c-leave-to {
   transform: translate3d(0, 90%, 0);
 }
 .scroll-top-enter-active,
-.scroll-top-leave-active {
+.scroll-top-leave-active,
+.scroll-top-c-enter-active,
+.scroll-top-c-leave-active {
   transition: transform 0.6s linear;
 }
 .p-page {

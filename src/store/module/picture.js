@@ -16,7 +16,6 @@ const mutations = {
             })
             return item;
         });
-        console.log(state.imgList);
     },
     getYear(state, payload) {
         state.yearData = payload;
