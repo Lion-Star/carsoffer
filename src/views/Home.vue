@@ -1,18 +1,17 @@
 <template>
   <div class="home">
-   
-      <div class="box" ref="box">
-          <div class="select" v-for="(item,index) in list" :key="index" ref="select">
-          <div class="top" :id="index">{{item.title}}</div>
-          <div class="bottom">
-            <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
-              <img :src="val.CoverPhoto" />
-              <span>{{val.Name}}</span>
-            </li>
-          </div>
+    <div class="box" ref="box">
+      <div class="select" v-for="(item,index) in list" :key="index" ref="select">
+        <div class="top" :id="index">{{item.title}}</div>
+        <div class="bottom">
+          <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
+            <img :src="val.CoverPhoto" />
+            <span>{{val.Name}}</span>
+          </li>
         </div>
       </div>
-    
+    </div>
+
     <!-- 弹窗组件 -->
     <van-popup v-model="show" position="right" :style="{ height: '100%' }">
       <div class="dialog" v-for="(item,index) in carlist" :key="index">
