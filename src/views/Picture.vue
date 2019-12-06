@@ -1,7 +1,9 @@
 <template>
   <div class="p-page">
     <div class="navTitle">
-      <span v-for="(item,index) in navList" :key="index" @click="setColor">{{item}}</span>
+      <span @click="setColor">颜色</span>
+      <span>|</span>
+      <span>车款</span>
     </div>
 
     <div class="content">
@@ -15,7 +17,7 @@
       </ul>
     </div>
 
-    <transition>
+    <transition name="scroll-top">
       <Color v-if="showColor" :SerialID="SerialID" :showColor.sync="showColor"></Color>
     </transition>
   </div>
@@ -27,7 +29,6 @@ import Color from "@/components/Color/Color.vue";
 export default {
   data() {
     return {
-      navList: ["颜色 V", "|", "车款 V"],
       SerialID: "",
       showColor: false
     };
@@ -54,13 +55,20 @@ export default {
     this.SerialID = this.$route.query.SerialID;
     //调用接口获取图片列表
     console.log(this.$route.query);
-
     this.getImageList(this.SerialID);
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.scroll-top-enter,
+.scroll-top-leave-to {
+  transform: translate3d(0, 90%, 0);
+}
+.scroll-top-enter-active,
+.scroll-top-leave-active {
+  transition: transform 0.6s linear;
+}
 .p-page {
   width: 100%;
   height: 100%;
@@ -91,7 +99,6 @@ export default {
       display: flex;
       flex-wrap: wrap;
       border-bottom: 0.2rem solid #fff;
-      justify-content: space-around;
       position: relative;
       .mask {
         width: 2.46rem;

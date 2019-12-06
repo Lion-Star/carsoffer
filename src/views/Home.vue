@@ -139,14 +139,14 @@ export default {
     display: flex;
     width: 100%;
     dd {
-      width:65% ;
+      width: 65%;
       height: 100%;
       padding-left: 0.1rem;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       span {
-        font-size: .34rem;
+        font-size: 0.34rem;
       }
       b {
         color: #f00;
@@ -164,13 +164,13 @@ export default {
     }
   }
 }
-.v-top{
+.v-top {
   width: 100%;
   margin-left: 1px;
-  font-size: .28rem;
-  line-height: .48rem;
+  font-size: 0.28rem;
+  line-height: 0.48rem;
   background: #f2f2f2;
-  padding-left: .3rem;
+  padding-left: 0.3rem;
   color: #717171;
 }
 

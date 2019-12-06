@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       item: "" //数据接口数据
-    }
+    };
   },
   components: {
     Head,
@@ -53,15 +53,15 @@ export default {
     width: 100%;
     height: 1rem;
     background: #3aacff;
-    font-size: .24rem;
+    font-size: 0.24rem;
     color: #fff;
     flex-direction: column;
     display: flex;
     text-align: center;
-    line-height: .42rem;
-    padding-top: .10rem;
-    p:nth-child(1){
-        font-size: .32rem;
+    line-height: 0.42rem;
+    padding-top: 0.1rem;
+    p:nth-child(1) {
+      font-size: 0.32rem;
     }
   }
 }

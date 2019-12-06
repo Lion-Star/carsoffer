@@ -1,6 +1,6 @@
 <template>
   <div class="color-page">
-    <div class="top-c">全部颜色</div>
+    <div class="top-c" @click="$emit('update:showColor', false)">全部颜色</div>
     <div class="nav-c">
       <!-- 遍历汽车颜色对象 取他的key 即为年份-->
       <span
@@ -12,7 +12,7 @@
     </div>
     <div class="bottom-c">
       <ul>
-        <li v-for="(item,index) of colorList" :key="index" @click="clickColor(item.ColorId)">
+        <li v-for="(item,index) of colorList" :key="index" @click="selectColor(item.ColorId)">
           <span :style="{background: item.Value}"></span>
           {{item.Name}}
         </li>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   props: ["SerialID"],
   data() {
@@ -33,25 +33,44 @@ export default {
   },
   computed: {
     ...mapState({
-      yearData: state => state.picture.yearData
-    }),
-    clickColor(colorId){
-      this.setColor(colorId);
-      this.$emit('update:showColor', false)
-    },
+      yearData: state => state.picture.yearData,
+      colorId: state => state.picture.colorId,
+      carId: state => state.picture.carId
+    })
   },
   methods: {
     ...mapActions({
       getYearColorList: "picture/getYearColorList",
-      setColor:"picture/setColorId"
+      getImageList: "picture/getImageList"
+    }),
+    ...mapMutations({
+      setColor: "picture/setColorId"
     }),
     changeIndex(item, index) {
       this.curIndex = index;
       this.colorList = item;
+    },
+    selectColor(colorId) {
+      this.$emit("update:showColor", false);
+      this.setColor(colorId);
+    }
+  },
+  watch: {
+    colorId() {
+      this.getImageList(this.serialId);
+    },
+    carId() {
+      this.getImageList(this.serialId);
     }
   },
   created() {
-    console.log(this.yearData);
+    this.setColor(this.colorId);
+
+    setTimeout(() => {
+      let obj = JSON.parse(JSON.stringify(this.yearData));
+      let arr = Object.values(obj);
+      this.changeIndex(arr[0],0);
+    }, 100);
 
     this.getYearColorList(this.SerialID);
   }

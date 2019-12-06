@@ -2,7 +2,7 @@ import { getImageList, getYearColorList } from '@/services/index'
 
 const state = {
     imgList: [], //图片列表
-    colorId: '', // 车系颜色
+    colorId: "4216", // 车系颜色
     carId: '', // 车款
     yearData: {}, //汽车颜色年份数据
 }
