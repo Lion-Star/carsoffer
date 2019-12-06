@@ -2,7 +2,7 @@
     <div class="imgs">
         <div class="image" @click="toImg">
             <img :src="data.CoverPhoto" alt="">
-            <span>999张图片</span>
+            <span>{{data.pic_group_count}}张照片</span>
         </div>
         <div class="title">
             <div class="tit">

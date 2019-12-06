@@ -8,10 +8,16 @@
         </div>
         <!-- 图片渲染 -->
             <Images :carImg="carImg" />
-        <!-- 点击弹出 -->
+        <!-- 点击弹出颜色组件 -->
         <transition name="scroll-top">
             <div class="carColor" v-show = "showColor">
                 <carColor :showColor.sync="showColor" />
+            </div>
+        </transition>
+        <!-- 点击弹出车款组件 -->
+        <transition name="scroll-top">
+            <div class="Cartype" v-show = "showType">
+                <Cartype :showType.sync="showType" />
             </div>
         </transition>
     </div>
@@ -20,17 +26,20 @@
 <script>
 import { mapState,mapActions } from "vuex";
 import carColor from '../components/carImg/carColor'
+import Cartype from '../components/carImg/Cartype'
 import Images from '../components/carImg/Image'
 export default {
     data(){
         return{
             nav:['颜色','车款'],
-            showColor:false
+            showColor:false,
+            showType:false
         }
     },
     components:{
         carColor,
-        Images
+        Images,
+        Cartype
     },
     computed:{
         ...mapState({
@@ -46,7 +55,7 @@ export default {
             if(index === 0){
                 this.showColor=true
             }else{
-                
+                this.showType=true
             }
         }
     },
@@ -70,6 +79,14 @@ export default {
     background: #f4f4f4;
 }
 .carColor{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+}
+.Cartype{
     position: fixed;
     top: 0;
     left: 0;

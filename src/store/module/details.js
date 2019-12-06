@@ -79,7 +79,11 @@ const mutations = {
     },
     navActive(state,payload){
         state.year=payload
+        //判断排序数据
         ifList(state.data)
+    },
+    Active(state,payload){
+        console.log(payload)
     }
 
 }

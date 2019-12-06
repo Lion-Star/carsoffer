@@ -21,15 +21,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.image{
+    margin-top: .2rem;
+}
 .image_item_list{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     li{
-        width: 33.3%;
-        height: 123px;
-        padding: 2px 2px;
+        width: 2.3rem;
+        height: 2.3rem;
+        margin: 0 .1rem .1rem .1rem ;
         span{
             display: inline-block;
             width: 100%;
@@ -41,18 +44,19 @@ export default {
 }
 .image_ps{
     position: absolute;
-    height: 123px;
-    width:123px;
+    height: 2.3rem;
+    width:2.3rem;
+    margin: 0 .1rem .1rem .1rem ;
     top: 0;
     left: 0;
     color: #ffffff;
     background: rgba(56,90,130,.5);
     font-size: 13px;
-     text-align: center;
+    text-align: center;
     .image_ps_wan{
-        margin-top: 45px;
-        font-size: 14px;
-        margin-bottom: 3px;
+        margin-top: .8rem;
+        font-size: .28rem;
+        margin-bottom: .1rem;
     }
 }
 </style>
