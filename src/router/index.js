@@ -27,6 +27,7 @@ const routes = [
             import ("../views/Picture.vue")
     },
     {
+        //询价页
         path: '/asklowprice',
         name: 'asklowprice',
         component: () =>
