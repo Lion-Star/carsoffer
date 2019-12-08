@@ -7,7 +7,7 @@
             </span>
         </div>
         <!-- 图片渲染 -->
-            <Images :carImg="carImg" />
+        <Images :carImg="carImg" />
         <!-- 点击弹出颜色组件 -->
         <transition name="scroll-top">
             <div class="carColor" v-show = "showColor">
@@ -93,6 +93,7 @@ export default {
     width: 100%;
     height: 100%;
     background: #f4f4f4;
+    overflow-y: auto;
 }
 .nav{
     width: 100%;

@@ -4,7 +4,8 @@ const state = {
     data: [],//原数据
     yearNav:['全部'],//nav所有年份
     tablist:[],//当前年份数据
-    year:'全部'//当前年份
+    year:'全部',//当前年份
+    yearType:[]
 }
 
 function sortList(list){
@@ -48,11 +49,14 @@ function yearList(list){
 //判断排序数据
 function ifList(data){
     state.data = data
-    //拿到年份
+    //拿到详情年份
     state.yearNav = ['全部']
     let yearNav = data.list.map(item => item.market_attribute.year)
     state.yearNav = state.yearNav.concat([...new Set(yearNav)])
-    
+    //拿到车款年份
+    state.yearType=[]
+    let yearType = data.list.map(item => item.market_attribute.year)
+    state.yearType = state.yearType.concat([...new Set(yearType)])
     //获取当前年份数据
     let tablist=[]
     if(state.year === '全部'){
@@ -81,11 +85,7 @@ const mutations = {
         state.year=payload
         //判断排序数据
         ifList(state.data)
-    },
-    Active(state,payload){
-        console.log(payload)
     }
-
 }
 
 const actions = {

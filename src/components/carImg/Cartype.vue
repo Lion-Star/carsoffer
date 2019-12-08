@@ -4,7 +4,7 @@
             <!-- 年份切换 -->
             <div class="nav">
                     <li
-                        v-for="(item,index) in yearNav"
+                        v-for="(item,index) in yearType"
                         :key="index"
                         @click="active(index,item)"
                         :class="index===Index?'active':''"
@@ -14,7 +14,7 @@
             <div class="block" v-for="(item,index) in tablist" :key="index">
                 <p>{{item.key}}</p>
                 <div class="text" v-for="(val,index) in item.list" :key="index">
-                        <ul>
+                        <ul @click="$router.push('/asklowprice')">
                             <li><span>{{val.market_attribute.year}}款 {{val.car_name}}</span><span>{{val.market_attribute.dealer_price_min}}起</span></li>
                             <li><span>{{val.horse_power}}马力{{val.gear_num}}档{{val.trans_type}}</span><span>指导价{{val.market_attribute.dealer_price_max}}</span></li>
                         </ul>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {mapState , mapMutations} from 'vuex'
+import {mapState , mapMutations , mapActions} from 'vuex'
 export default {
     data(){
         return{
@@ -34,16 +34,20 @@ export default {
     computed:{
         ...mapState({
             tablist: state => state.details.tablist,
-            yearNav: state => state.details.yearNav
+            yearType: state => state.details.yearType
         })
     },
     methods:{
          ...mapMutations({ navActive: "details/navActive" }),
+         ...mapActions({getlist:"details/getBaoJia"}),
             // tab切换高亮 切换数据
             active(index, year) {
                 this.Index = index;
                 this.navActive(year);
             }
+    },
+    created(){
+        this.getlist(JSON.parse(sessionStorage.getItem('item')).SerialID)
     }
 }
 </script>

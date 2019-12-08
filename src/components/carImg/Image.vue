@@ -7,7 +7,9 @@
                     <p>{{item.Count}}张</p>
                 </div>
                 <li v-for="(itemimg,key) in item.List" :key="key">
+                    <!-- <img :src="'url('+itemimg.Url+')'" alt=""> -->
                     <span src='' :style="{backgroundImage:'url('+itemimg.Url+')'}" />
+                    <!-- <img :src="getPicUrl(item)" @load="setImgClass($event.target)" :onerror="noPic"> -->
                 </li>
             </div>
         </div>
@@ -35,10 +37,9 @@ export default {
         margin: 0 .1rem .1rem .1rem ;
         span{
             display: inline-block;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
+            width: 2.3rem;
+            height: 2.3rem;
+            background-size: 4rem;
         }
     }
 }
