@@ -19,7 +19,7 @@
           <span>&nbsp;&nbsp;&nbsp;{{val.market_attribute.dealer_price_min}}起&nbsp;&nbsp;&nbsp;</span>
           指导价 &nbsp;&nbsp;&nbsp;{{val.market_attribute.official_refer_price}}
         </li>
-        <button @click="$router.push('/asklowprice')">询问底价</button>
+        <button @click="$router.push({path:'/asklowprice',query:{val}})">询问底价</button>
       </div>
     </div>
     <div class="empty"></div>

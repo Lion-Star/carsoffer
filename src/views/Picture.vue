@@ -19,7 +19,6 @@
 
     <transition name="scroll-top">
       <Color v-if="showColor" :SerialID="SerialID" :showColor.sync="showColor"></Color>
-      
     </transition>
     
     <transition name="scroll-top-c">
@@ -54,13 +53,9 @@ export default {
       getImageList: "picture/getImageList"
     }),
     setColor() {
-      console.log('1111');
-      
       this.showColor = true;
     },
     setCar(){
-     
-      
       this.showCar = true;
     }
   },

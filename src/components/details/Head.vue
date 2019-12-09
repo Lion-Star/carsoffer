@@ -13,7 +13,7 @@
           >指导价 {{data.market_attribute.official_refer_price}}</p>
         </div>
         <div class="titright">
-          <button @click="$router.push('/asklowprice')">询问低价</button>
+          <button @click="$router.push({path:'/asklowprice',query:{val:data.list[0]}})">询问低价</button>
         </div>
       </div>
     </div>
@@ -23,6 +23,7 @@
 <script>
 export default {
   props: ["data"]
+  
 };
 </script>
 

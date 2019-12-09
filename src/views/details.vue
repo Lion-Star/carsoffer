@@ -5,7 +5,7 @@
     <!-- tab切换组件 -->
     <Tab></Tab>
     <div class="fixed">
-      <p @click="$router.push(`/asklowprice`)">询问低价</p>
+      <p @click="$router.push({path:'/asklowprice',query:{val:data.list[0]}})">询问低价</p>
       <p>本地营销商为你售价</p>
     </div>
   </div>
@@ -33,9 +33,11 @@ export default {
   methods: {
     ...mapActions({ getlist: "details/getBaoJia" })
   },
-  created() {
+  async created() {
     this.item = JSON.parse(sessionStorage.getItem("item"));
-    this.getlist(this.item.SerialID);
+    await this.getlist(this.item.SerialID);
+    console.log(this.data);
+    
   }
 };
 </script>

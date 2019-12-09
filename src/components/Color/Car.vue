@@ -1,6 +1,6 @@
 <template>
   <div class="car-page">
-    <div class="top-c" @click="$emit('update:showCar', false)">全部车款</div>
+    <div class="top-c" v-if="type!=='price'" @click="$emit('update:showCar', false)">全部车款{{type}}</div>
     <!-- 年份列表 -->
     <div class="nav-c">
       <span
@@ -14,7 +14,7 @@
     <div class="bottom-c">
       <div class="block" v-for="(item,index) in tabData" :key="index">
         <p>{{item.key}}</p>
-        <div class="tabBox" v-for="(val,i) in item.list" :key="i">
+        <div class="tabBox" v-for="(val,i) in item.list" :key="i" @click="enter">
           <li>{{val.market_attribute.year}} 款&nbsp;{{val.car_name}}</li>
           <li>{{val.horse_power}}马力{{val.gear_num}}档{{val.trans_type}}</li>
           <li>
@@ -29,7 +29,7 @@
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
 export default {
-  props: ["SerialID"],
+  props: ["SerialID","type"],
   data() {
     return {
       colorList: [],
@@ -52,6 +52,11 @@ export default {
     },
     selectCar(colorId) {
       this.$emit("update:showCar", false);
+    },
+    enter(){
+      if(this.type==="price"){
+        this.$emit('update:showCar', false)
+      }
     }
   },
   created() {
