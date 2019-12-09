@@ -1,9 +1,8 @@
 <template>
-    <router-view/>
+        <router-view/>
 </template>
 
 <style lang="scss">
-
 *{
   list-style: none;
   box-sizing: border-box;
@@ -18,5 +17,6 @@ body{
   font-size: .32rem;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 </style>

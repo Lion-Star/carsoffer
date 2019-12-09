@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Head from '../components/details/Head'
 import Tab from '../components/details/Tab'
 import { mapState,mapActions} from "vuex";

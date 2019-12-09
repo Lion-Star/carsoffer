@@ -11,7 +11,7 @@
                     <p v-if="data.market_attribute!==undefined">指导价 {{data.market_attribute.official_refer_price}}</p>
                 </div>
                 <div class="titright">
-                    <button>询问低价</button>
+                    <button @click="$router.push('/offer')">询问低价</button>
                 </div>
             </div>
         </div>  

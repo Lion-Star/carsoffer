@@ -18,10 +18,10 @@ const routes = [
             import ("../views/details.vue")
     },
     {
-        path: '/asklowprice',
-        name: 'asklowprice',
+        path: '/offer',
+        name: 'offer',
         component: () =>
-            import ("../views/asklowprice.vue")
+            import ("../views/Offer.vue")
     },
     {
         path: '/img',

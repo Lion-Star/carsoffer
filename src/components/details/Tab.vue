@@ -21,7 +21,7 @@
                     <span>指导价{{val.market_attribute.dealer_price_max}}</span>
                 </li>
             </ul>
-            <button>询问低价</button>
+            <button @click="toAsk(val)">询问低价</button>
             <p v-show="index!==item.list.length-1"></p>
       </div>
     </div>
@@ -48,6 +48,12 @@ export default {
     active(index, year) {
       this.Index = index;
       this.navActive(year);
+    },
+    //点击跳转报价页面
+    toAsk(item){
+      sessionStorage.setItem('car_id',item.car_id)
+      
+      this.$router.push('/offer')
     }
   }
 };
