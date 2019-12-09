@@ -10,6 +10,7 @@
         @click="changeIndex(item,index)"
       >{{key}}</span>
     </div>
+    <!-- 颜色列表 -->
     <div class="bottom-c">
       <ul>
         <li v-for="(item,index) of colorList" :key="index" @click="selectColor(item.ColorId)">
@@ -63,16 +64,10 @@ export default {
       this.getImageList(this.serialId);
     }
   },
-  created() {
-    this.setColor(this.colorId);
-
-    setTimeout(() => {
-      let obj = JSON.parse(JSON.stringify(this.yearData));
-      let arr = Object.values(obj);
-      this.changeIndex(arr[0],0);
-    }, 100);
-
-    this.getYearColorList(this.SerialID);
+  async created() {
+    await this.setColor(this.colorId);
+    await this.getYearColorList(this.SerialID);
+    await this.changeIndex(Object.values(this.yearData)[0], 0);
   }
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="car-page">
     <div class="top-c" @click="$emit('update:showCar', false)">全部车款</div>
+    <!-- 年份列表 -->
     <div class="nav-c">
       <span
         v-for="(item,index) of yearList"
@@ -9,6 +10,7 @@
         :class="index===Index?'active':''"
       >{{item}}</span>
     </div>
+    <!-- 车款列表 -->
     <div class="bottom-c">
       <div class="block" v-for="(item,index) in tabData" :key="index">
         <p>{{item.key}}</p>

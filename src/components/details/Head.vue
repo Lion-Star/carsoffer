@@ -8,7 +8,8 @@
       <div class="tit">
         <div class="titleft">
           <p v-if="data.market_attribute!==undefined">{{data.market_attribute.dealer_price}}</p>
-          <p v-if="data.market_attribute!==undefined"
+          <p
+            v-if="data.market_attribute!==undefined"
           >指导价 {{data.market_attribute.official_refer_price}}</p>
         </div>
         <div class="titright">
@@ -30,15 +31,19 @@ export default {
   width: 100%;
   height: 35%;
   position: relative;
-  .num{
+  .num {
     position: absolute;
     top: 2.8rem;
-    right: .3rem;
+    right: 0.3rem;
     color: #fff;
-    padding: 1px .1rem;
-    border-radius: .2rem;
-    background: rgba(0,0,0,.6);
-    font-size: .24rem;
+    padding: .01rem 0.1rem;
+    border-radius: 0.2rem;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 0.24rem;
+    width: 1.6rem;
+    height: .40rem;
+    line-height: .40rem;
+    text-align: center;
   }
   .image {
     width: 100%;
@@ -71,7 +76,7 @@ export default {
       }
       p:nth-child(2) {
         color: #ccc;
-        font-size: 12px;
+        font-size: .24rem;
       }
     }
     .titright {
@@ -83,9 +88,9 @@ export default {
         outline: none;
         border: 0;
         font-size: 0.32rem;
-        line-height: 30px;
+        line-height: .68rem;
         background: #3aacff;
-        border-radius: 3px;
+        border-radius: .6rem;
         color: #fff;
       }
     }
