@@ -16,7 +16,7 @@
     </div>
 
     <transition name="scroll-top">
-      <MaskBox v-if="showMask" :showMask.sync="showMask" :countyList="countyList"></MaskBox>
+      <MaskBox v-if="showMask"  :showMask.sync="showMask" :countyList="countyList"></MaskBox>
     </transition>
   </div>
 </template>
@@ -25,7 +25,7 @@
 import { mapState, mapActions } from "vuex";
 import MaskBox from "@/components/Dealer/Mask";
 export default {
-  props:["CityName"],
+  props: ["CityName"],
   data() {
     return {
       showMask: false

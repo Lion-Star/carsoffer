@@ -30,19 +30,14 @@ const actions = {
     async getDealerList({ commit }, payload) {
         let res = await getDealerList(payload)
         commit('getDealerData', res.data)
-        console.log(payload, res.data.list);
     },
     async getCityList({ commit }, payload) {
-
         let res = await getCityList(payload)
         if (payload) {
             commit('updateCountyList', res.data)
-            console.log(res.data);
         } else {
             commit('updateCityList', res.data)
-
         }
-
     }
 }
 

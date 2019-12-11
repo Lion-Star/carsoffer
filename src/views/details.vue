@@ -35,9 +35,7 @@ export default {
   },
   async created() {
     this.item = JSON.parse(sessionStorage.getItem("item"));
-    await this.getlist(this.item.SerialID);
-    console.log(this.data);
-    
+    await this.getlist(this.item.SerialID);-''
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="color-page">
-    <div class="top-c" @click="$emit('update:showColor', false)">全部颜色</div>
+    <div class="top-c" @click="allColor">全部颜色</div>
     <div class="nav-c">
       <!-- 遍历汽车颜色对象 取他的key 即为年份-->
       <span
@@ -13,7 +13,7 @@
     <!-- 颜色列表 -->
     <div class="bottom-c">
       <ul>
-        <li v-for="(item,index) of colorList" :key="index" @click="selectColor(item.ColorId)">
+        <li v-for="(item,index) of colorList" :key="index" @click="selectColor(item)">
           <span :style="{background: item.Value}"></span>
           {{item.Name}}
         </li>
@@ -41,8 +41,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getYearColorList: "picture/getYearColorList",
-      getImageList: "picture/getImageList"
+      getYearColorList: "picture/getYearColorList"
     }),
     ...mapMutations({
       setColor: "picture/setColorId"
@@ -51,9 +50,14 @@ export default {
       this.curIndex = index;
       this.colorList = item;
     },
-    selectColor(colorId) {
+    selectColor(item) {
       this.$emit("update:showColor", false);
-      this.setColor(colorId);
+      this.setColor(item);
+    },
+    allColor(e) {
+      let item = { Name: e.target.innerHTML };
+      this.setColor(item);
+      this.$emit("update:showColor", false);
     }
   },
   watch: {
@@ -65,7 +69,6 @@ export default {
     }
   },
   async created() {
-    await this.setColor(this.colorId);
     await this.getYearColorList(this.SerialID);
     await this.changeIndex(Object.values(this.yearData)[0], 0);
   }

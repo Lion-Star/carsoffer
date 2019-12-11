@@ -41,7 +41,7 @@
     </div>
 
     <transition name="scroll-top">
-      <CityList v-if="showCity" :showCity.sync="showCity" :CityName="city.CityName"></CityList>
+      <CityList v-if="showCity" :showCity.sync="showCity"  :CityName="city.CityName"></CityList>
     </transition>
     <transition name="scroll-top">
       <Car v-if="showCar" :showCar.sync="showCar" :type="'price'"></Car>
@@ -96,9 +96,9 @@ export default {
     }
   },
   async created() {
-    await window.navigator.geolocation.getCurrentPosition(res => {
-      console.log(res);
-    });
+    // await window.navigator.geolocation.getCurrentPosition(res => {
+    //   console.log(res);
+    // });
     this.item = JSON.parse(sessionStorage.getItem("item"));
     this.val = this.$route.query.val;
     await this.getCityId();

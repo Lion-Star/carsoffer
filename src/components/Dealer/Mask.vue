@@ -2,18 +2,32 @@
   <div class="mask">
     <div class="left" @click="cancel()"></div>
     <div class="right">
-      <li v-for="(item,index) in countyList" :key="index">{{item.CityName}}</li>
+      <li v-for="(item,index) in countyList" :key="index" @click="back(item)">{{item.CityName}}</li>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   props: ["countyList"],
+  computed:{
+    ...mapState({
+      DealerList1: state => state.lowprice.DealerList
+    })
+  },
   methods: {
+    ...mapActions({
+      getDealerList: "lowprice/getDealerList"
+    }),
     cancel() {
       this.$emit("update:showMask", false);
       console.log("111");
+    },
+    back(item) {
+      console.log(item.CityID);
+      let params ={cityId:item.CityID}
+      this.getDealerList()
     }
   }
 };
