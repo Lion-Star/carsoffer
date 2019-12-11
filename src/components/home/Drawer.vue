@@ -23,9 +23,8 @@ export default  {
   watch:{
     list:function(){
       this.$nextTick(()=>{
-       
         this.offsetTop =  (window.innerHeight - this.$refs.ele.offsetHeight)/2
-        console.log(window.innerHeight,this.$refs.ele.offsetHeight);
+        // console.log(window.innerHeight,this.$refs.ele.offsetHeight);
       })
     }
   },

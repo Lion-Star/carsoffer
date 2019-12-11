@@ -4,7 +4,7 @@
         <div>
             <p><span v-for="(item, index ) of carColor" @click="handleC(item,index)" :class="index===Index?'active':''" :key="index">{{index}}</span></p>
             <ul>
-                <li v-for="(item,index) in colorData" :key="index">
+                <li v-for="(item,index) in colorData" :key="index" @click="setColor(item)">
                     <span :style="{background:item.Value}"></span> {{item.Name}}
                 </li>
             </ul>
@@ -30,15 +30,23 @@ export default {
         ...mapMutations({
             colorTab:'img/colorTab'
         }),
-        ...mapActions({getColor:'img/getColor'}),
+        ...mapActions({
+            getColor:'img/getColor',
+            getImg:'img/getImg'
+        }),
         handleC(item ,index){
             this.Index=index
             this.colorTab(item)
         },
+        setColor(item){
+            console.log(sessionStorage.getItem('SerialID'))
+            console.log(item)
+            // this.getImg(sessionStorage.getItem('SerialID')) 
+            this.$emit('update:showColor',false)
+        }
     },
     created(){
-        this.getColor(sessionStorage.getItem('SerialID'))
-        
+        this.getColor(sessionStorage.getItem('SerialID')) 
     }
 }
 </script>

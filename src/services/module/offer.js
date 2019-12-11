@@ -13,6 +13,6 @@ export let getCity=(id)=>{
     return request(`https://baojia.chelun.com/v1-city-alllist.html?provinceid=${id}`)
 }
 //经销商
-export let getShang=(carId,cityId)=>{
-    return request(`https://baojia.chelun.com/v2-dealer-alllist.html?carId=${carId} & cityId=${cityId}`)
+export let getShang=({car_id,CityID})=>{
+    return request(`https://baojia.chelun.com/v2-dealer-alllist.html?carId=${car_id}&cityId=${CityID}`)
 }

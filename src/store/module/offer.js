@@ -4,15 +4,14 @@ const state={
     IP:'',//定位
     provinceiData:[],//获取省份
     cityData:[],//获取市
-    CityID:'',//地方id
-    carID:'',//车id
+    dealerlist:[],//经销商数据
 }
 
 const mutations={
     // 定位
     getIP(state , payload){
-        state.CityID=payload.CityID
         state.IP=payload.CityName
+        sessionStorage.setItem('CityID',payload.CityID)
     },
     //获取省份
     getProvincei(state,payload){
@@ -20,16 +19,17 @@ const mutations={
     },
     //改变定位
     setIP(state,payload){
-        state.CityID=payload.CityID
         state.IP=payload.CityName
+        sessionStorage.setItem('CityID',payload.CityID)
     },
     //获取市
     getCity(state,payload){
         state.cityData=payload.data
     },
-    //经销商
+    //获取经销商
     getShang(state,payload){
-        console.log('0000',payload)
+        state.dealerlist = payload.data.list
+        console.log(state.dealerlist)
     }
 }
 

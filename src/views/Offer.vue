@@ -37,8 +37,7 @@ import Dealer from '../components/offer/Dealer'
 export default {
   data(){
      return{
-          showSelect:false,
-          cityid:''
+          showSelect:false
      }
   },
   components:{

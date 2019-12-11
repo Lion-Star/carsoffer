@@ -7,7 +7,7 @@
             </span>
         </div>
         <!-- 图片渲染 -->
-        <Images :carImg="carImg" />
+        <Images />
         <!-- 点击弹出颜色组件 -->
         <transition name="scroll-top">
             <div class="carColor" v-show = "showColor">
@@ -20,6 +20,8 @@
                 <Cartype :showType.sync="showType" />
             </div>
         </transition>
+        <!-- 点击类型图片 -->
+        <ImgList v-if="showImg" :showImg.sync="showImg" />
     </div>
 </template> 
 
@@ -28,6 +30,7 @@ import { mapState,mapActions } from "vuex";
 import carColor from '../components/carImg/carColor'
 import Cartype from '../components/carImg/Cartype'
 import Images from '../components/carImg/Image'
+import ImgList from '../components/carImg/imgList'
 export default {
     data(){
         return{
@@ -39,11 +42,12 @@ export default {
     components:{
         carColor,
         Images,
-        Cartype
+        Cartype,
+        ImgList
     },
     computed:{
         ...mapState({
-            carImg:state=>state.img.carImg
+            showImg:state=>state.img.showImg
         })
     },
     methods:{
@@ -60,6 +64,7 @@ export default {
         }
     },
     created(){
+        //获取图片接口
          this.getImg(sessionStorage.getItem('SerialID'))
     }
 }
@@ -77,6 +82,7 @@ export default {
     height: 100%;
     color: #000;
     background: #f4f4f4;
+    overflow-y: auto;
 }
 .carColor{
     position: fixed;
@@ -100,6 +106,9 @@ export default {
     height: .8rem;
     background: #ffffff;
     display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 10;
     span{
         flex: 1;
         text-align: center;
