@@ -17,7 +17,7 @@ const routes = [
         path: '/details',
         name: 'details',
         component: () =>
-            import ("../views/Details.vue")
+            import ("../views/details.vue")
     },
     {
         //图片页
@@ -31,7 +31,7 @@ const routes = [
         path: '/asklowprice',
         name: 'asklowprice',
         component: () =>
-            import ("../views/Asklowprice.vue")
+            import ("../views/asklowprice.vue")
     },
     {
         path: "*",
