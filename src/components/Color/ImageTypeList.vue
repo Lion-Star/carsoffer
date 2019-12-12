@@ -17,6 +17,7 @@
             :key="index"
             v-for="(item, index) in slotProps.value"
             :style="{backgroundImage: 'url('+item.Url.replace('{0}', item.LowSize)+')'}"
+            @click="showSwiper(index)"
           />
         </ul>
       </template>
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import CommonList from "./CommonList";
 export default {
   computed: {
@@ -41,7 +42,18 @@ export default {
   methods: {
     ...mapActions({
       getImageTypeList: "picture/getImageTypeList"
-    })
+    }),
+    ...mapMutations({
+      setCurrent:"picture/setCurrent"
+    }),
+    showSwiper(index) {
+      // 显示轮播
+      console.log('111');
+      
+      this.$emit("update:showImageSwiper", true);
+      // 修改current
+      this.setCurrent(index);
+    }
   },
   mounted() {
     this.getImageTypeList();

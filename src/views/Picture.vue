@@ -20,7 +20,7 @@
     </div>
 
     <!-- banner列表 -->
-     <ImageTypeList v-if="showImageList"/>
+     <ImageTypeList v-if="showImageList" :showImageSwiper.sync="showImageSwiper"/>
 
     <!-- 颜色组件 -->
     <transition name="scroll-top">
@@ -82,7 +82,8 @@ export default {
   methods: {
     //映射函数
     ...mapActions({
-      getImageList: "picture/getImageList"
+      getImageList: "picture/getImageList",
+      getImageTypeList:"picture/getImageTypeList"
     }),
     ...mapMutations({
       setImageID: 'picture/setImageId',
@@ -99,10 +100,9 @@ export default {
       this.showCar = true;
     },
     showSwiper(index, Count, List, ImageID){
-      
       this.setCurrent(index);
       this.setImageID(ImageID)
-      this.setImageTypeList({
+      this.getImageTypeList({
         Count,
         List,
         ImageID
@@ -111,8 +111,6 @@ export default {
     },
     // 点击分类进入分类列表
     clickImageID(id){
-      console.log(id);
-      
       this.setImageID(id);
       this.showImageList = true;
     }
