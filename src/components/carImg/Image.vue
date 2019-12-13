@@ -6,7 +6,7 @@
                     <p class="image_ps_wan">{{item.Name}}</p>
                     <p>{{item.Count}}张</p>
                 </div>
-                <li v-for="(itemimg,key) in item.List" :key="key">
+                <li v-for="(itemimg,key) in item.List" :key="key" @click="toSwiper(key,item.Id)">
                     <span src='' :style="{backgroundImage:'url('+itemimg.Url+')'}" />
                 </li>
             </div>
@@ -29,12 +29,20 @@ export default {
         ...mapMutations({
             setSerialID:"img/setSerialID",
             setImgID:"img/setImgID",
-            showImg:"img/showImg"
+            showImg:"img/showImg",
+            setCurrent:"img/setCurrent"
         }),
+        //进入图片类型
         toimg(id){
             this.setImgID(id)
             this.getTypeImg()
             this.showImg()
+        },
+        toSwiper(index,id){
+            this.setImgID(id)
+            this.getTypeImg()
+            this.setCurrent(index)
+            this.$emit("update:showSwiper",true)
         }
     },
     created(){

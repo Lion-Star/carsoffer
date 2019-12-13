@@ -11,7 +11,7 @@
                     <p v-if="data.market_attribute!==undefined">指导价 {{data.market_attribute.official_refer_price}}</p>
                 </div>
                 <div class="titright">
-                    <button @click="$router.push('/offer')">询问低价</button>
+                    <button @click="toOffer(data)">询问低价</button>
                 </div>
             </div>
         </div>  
@@ -25,6 +25,12 @@ export default {
       toImg(){
           sessionStorage.setItem('SerialID',this.data.SerialID)
           this.$router.push(`/img?SerialID=${this.data.SerialID}`)
+      },
+      toOffer(data){
+          let title = {img:data.Picture,name:data.AliasName}
+          sessionStorage.setItem('offer',title)
+          this.$router.push('/offer')
+          console.log(sessionStorage.setItem('offer',JSON.stringify(title)))
       }
   }
 }

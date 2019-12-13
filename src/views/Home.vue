@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="box" ref="box">
+    <div class="box" ref="box" v-stricky="letter">
       <div class="select" v-for="(item,index) in list" :key="index" ref="select">
         <div class="top" :id="index">{{item.title}}</div>
         <div class="bottom">

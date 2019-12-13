@@ -64,6 +64,7 @@ export default {
         text-align: center;
         line-height: .8rem;
         height: .8rem;
+        z-index: 99;
     }
 }
 .warp{

@@ -66,6 +66,10 @@ const mutations = {
     //修改分页
     setPage(state, payload){
         state.page = payload;
+    },
+    //修改当前页
+    setCurrent(state,payload){
+        state.current = payload
     }
 }
 
@@ -77,6 +81,7 @@ const actions = {
     },
     //获取图片
     async getImg({commit , state},payload){
+        state.showImg=false
         let params = {SerialID:payload}
         // 判断是否选择颜色
         if(state.colorId){
@@ -101,7 +106,6 @@ const actions = {
             PageSize: state.pageSize
         }
         let res = await getTypeImg(params);
-        console.log('res...', res);
         let {Count, List} = res.data
         commit('setImageList', {Count, List});
     }

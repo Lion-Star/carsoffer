@@ -9,7 +9,7 @@
             @pullingUp="onPullingUp"
         >
             <ul>
-                <span :key="index" v-for="(item, index) in imageList" :style="{backgroundImage: 'url('+item.Url.replace('{0}', item.LowSize)+')'}"/>
+                <span :key="index" v-for="(item, index) in imageList" @click="toSwiper(index)" :style="{backgroundImage: 'url('+item.Url.replace('{0}', item.LowSize)+')'}"/>
             </ul>
         </scroll>
     </div>
@@ -18,7 +18,7 @@
 
 <script>
 import scroll from '../better-scroll/scroll'
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions,mapMutations} from 'vuex'
 export default {
     components:{
         scroll
@@ -50,19 +50,19 @@ export default {
         ...mapActions({
             getTypeImg:"img/getTypeImg"
         }),
+        ...mapMutations({
+            setCurrent:"img/setCurrent"
+        }),
         async onPullingDown() {
-            // console.log('pullingdown...');
-            // setTimeout(()=>{
-            //     this.refreshDispatch(1);
-            // }, 10000);
             await this.getTypeImg(1);
         },
         async onPullingUp() {
-            // console.log('pullingup...');
-            // setTimeout(()=>{
-                // this.loadMoreDispatch(this.page + 1);
-            // }, 10000);
             await this.getTypeImg(this.page + 1);
+        },
+        //点击弹出swiper
+        async toSwiper(index){
+            this.setCurrent(index)
+            this.$emit("update:showSwiper",true)
         }
     },
     watch:{
@@ -70,7 +70,7 @@ export default {
             handler(val) {
                 const scroll = this.$refs.scroll.scroll
                 if (val) {
-                    scroll.openPullDown()
+                    scroll.openPullDown() 
                 } else {
                     scroll.closePullDown()
                 }

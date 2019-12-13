@@ -7,7 +7,7 @@
             </span>
         </div>
         <!-- 图片渲染 -->
-        <Images />
+        <Images :showSwiper.sync="showSwiper" />
         <!-- 点击弹出颜色组件 -->
         <transition name="scroll-top">
             <div class="carColor" v-show = "showColor">
@@ -21,7 +21,9 @@
             </div>
         </transition>
         <!-- 点击类型图片 -->
-        <ImgList v-if="showImg" :showImg.sync="showImg" />
+        <ImgList v-if="showImg" :showImg.sync="showImg" :showSwiper.sync="showSwiper" />
+        <!-- 点击弹出swiper -->
+        <ImageSwiper v-if="showSwiper" :showSwiper.sync="showSwiper" />
     </div>
 </template> 
 
@@ -31,19 +33,22 @@ import carColor from '../components/carImg/carColor'
 import Cartype from '../components/carImg/Cartype'
 import Images from '../components/carImg/Image'
 import ImgList from '../components/carImg/imgList'
+import ImageSwiper from '../components/carImg/ImageSwiper'
 export default {
     data(){
         return{
             nav:['颜色','车款'],
             showColor:false,
-            showType:false
+            showType:false,
+            showSwiper:false
         }
     },
     components:{
         carColor,
         Images,
         Cartype,
-        ImgList
+        ImgList,
+        ImageSwiper
     },
     computed:{
         ...mapState({
@@ -108,7 +113,6 @@ export default {
     display: flex;
     position: fixed;
     top: 0;
-    z-index: 10;
     span{
         flex: 1;
         text-align: center;

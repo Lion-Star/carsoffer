@@ -46,7 +46,7 @@ export default  {
       this.$emit('skip', index);
     },
     touchEnd(e){
-      console.log('end.....',e);
+      // console.log('end.....',e);
     }
   }
 }

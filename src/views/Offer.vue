@@ -4,9 +4,9 @@
          <p>可向多个商家询问最低价，商家及时回复？</p>
       </header>
       <div class="title">
-          <img src="" alt="">
+          <img :src="title.img" alt="">
           <div class="title-right">
-              <p>奥迪A4L</p>
+              <p>{{title.name}}</p>
               <p>2019款 35 TFSI 进取版 国V</p>
           </div>
       </div>
@@ -37,7 +37,8 @@ import Dealer from '../components/offer/Dealer'
 export default {
   data(){
      return{
-          showSelect:false
+          showSelect:false,
+          title:{}
      }
   },
   components:{
@@ -59,7 +60,8 @@ export default {
       })
   },
   created(){
-      this.getIP()
+     this.getIP()
+     this.title = JSON.parse(sessionStorage.getItem('offer'))
   }
 }
 </script>

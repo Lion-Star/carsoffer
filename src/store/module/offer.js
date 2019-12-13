@@ -29,7 +29,6 @@ const mutations={
     //获取经销商
     getShang(state,payload){
         state.dealerlist = payload.data.list
-        console.log(state.dealerlist)
     }
 }
 
