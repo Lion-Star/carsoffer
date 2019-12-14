@@ -25,7 +25,7 @@
       <Dealer />
       <!-- 弹出省份 -->
       <transition name="scroll-top">
-          <Select :showSelect.sync=showSelect :IP=IP  v-show="showSelect" />
+          <Select :showSelect.sync="showSelect" :IP="IP"  v-show="showSelect" />
       </transition>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
   },
   created(){
      this.getIP()
-     this.title = JSON.parse(sessionStorage.getItem('offer'))
+     this.title = sessionStorage.getItem('offer')
   }
 }
 </script>

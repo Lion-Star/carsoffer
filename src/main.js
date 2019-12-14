@@ -19,15 +19,10 @@ Vue.use(ImagePreview);
 
 //引入懒加载插件
 import VueLazyload from 'vue-lazyload'
-Vue.use(VueLazyload)
-
-//引入自定义指令
-import './directive/stricky'
 
 Vue.use(VueLazyload, {
     preLoad: 1.3,
-    error: 'dist/error.png',
-    loading: 'dist/loading.gif',
+    loading: 'http://hbimg.b0.upaiyun.com/1f828e876d3b9aed1bcd3213f28db91c0e8f44589965-9droKD_fw658',
     attempt: 1
 })
 

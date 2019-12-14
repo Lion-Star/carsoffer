@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <div class="box" ref="box" v-stricky="letter">
+    <div class="box" ref="box">
       <div class="select" v-for="(item,index) in list" :key="index" ref="select">
         <div class="top" :id="index">{{item.title}}</div>
         <div class="bottom">
           <li v-for="(val,i) in item.data" :key="i" @click="showPopup(val.MasterID)">
-            <img :src="val.CoverPhoto" />
+            <div class="imgs">
+                  <img v-lazy="val.CoverPhoto" />
+            </div>
             <span>{{val.Name}}</span>
           </li>
         </div>
@@ -112,15 +114,22 @@ export default {
   .bottom {
     width: 100%;
     li {
-      height: 0.8rem;
+      height: 1rem;
+      box-sizing: border-box;
+      border-bottom: 1px solid #ddd;
       display: flex;
-      line-height: 0.8rem;
-      margin: 0.3rem;
-      border-bottom: 0.01rem solid #ccc;
-      img {
-        width: 1.2rem;
-        height: 0.8rem;
-        padding-right: 0.4rem;
+      align-items: center;
+      margin: 0 .4rem;
+      .imgs{
+          width: 0.8rem;
+          height: 0.8rem;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+      }
+      span{
+        margin-left: .5rem;
       }
     }
     li:last-child {

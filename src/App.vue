@@ -3,7 +3,9 @@
 </template>
 
 <style lang="scss">
-*{
+html,body,div,ul,li,dl,dt,dd,img,span,header,p{
+  margin: 0;
+  padding: 0;
   list-style: none;
   box-sizing: border-box;
 }

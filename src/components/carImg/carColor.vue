@@ -55,6 +55,7 @@ export default {
 .warp{
     width: 100%;
     height: 100%;
+    z-index: 10;
     background: #f4f4f4;
     .p{
         margin: .15rem 0;

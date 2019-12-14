@@ -1,7 +1,7 @@
 <template>
   <div class="warp">
         <!-- 详情上测标题 -->
-        <Head :data="data"></Head>
+        <Head></Head>
         <!-- tab切换组件 -->
         <Tab></Tab>
         <div class="fixed">
@@ -14,16 +14,11 @@
 <script>
 import Head from '../components/details/Head'
 import Tab from '../components/details/Tab'
-import { mapState,mapActions} from "vuex";
+import {mapActions} from "vuex";
 export default {
     components:{
         Head,
         Tab
-    },
-    computed:{
-        ...mapState({
-            data:state=>state.details.data
-        })
     },
     methods:{
        ...mapActions({getlist:"details/getBaoJia"}),
