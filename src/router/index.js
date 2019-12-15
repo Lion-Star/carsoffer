@@ -7,7 +7,7 @@ const routes = [
 
     {
         // 主页
-        path: '/home',
+        path: '/',
         name: 'home',
         component: () =>
             import ("../views/Home.vue")
@@ -32,12 +32,7 @@ const routes = [
         name: 'asklowprice',
         component: () =>
             import ("../views/asklowprice.vue")
-    },
-    {
-        path: "*",
-        redirect: "/home"
     }
-
 ]
 
 const router = new VueRouter({
