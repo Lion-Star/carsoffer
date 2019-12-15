@@ -15,6 +15,7 @@ export function debounce(func, delay = 500) {
 //函数节流  事件每隔500ms就会触发一次
 
 export function throttle(func, delay = 500) {
+
     let start = +new Date();
 
     return function() {

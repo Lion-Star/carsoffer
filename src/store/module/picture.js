@@ -13,6 +13,7 @@ const state = {
     Page: 1, //分页 当前页 给默认值
     PageSize: 30, //每页数量 给默认值
     Current: ""
+
 }
 
 const mutations = {
@@ -83,7 +84,6 @@ const actions = {
     async getImageList({ commit, state }, payload) {
         let params = { SerialID: payload };
         console.log(params, "111111111111");
-
         if (state.carId) { //如果车款有值
             params.CarId = state.carId;
         }

@@ -7,7 +7,7 @@ const routes = [
 
     {
         // 主页
-        path: '/home',
+        path: '/',
         name: 'home',
         component: () =>
             import ("../views/Home.vue")
@@ -17,7 +17,7 @@ const routes = [
         path: '/details',
         name: 'details',
         component: () =>
-            import ("../views/Details.vue")
+            import ("../views/details.vue")
     },
     {
         //图片页
@@ -31,13 +31,8 @@ const routes = [
         path: '/asklowprice',
         name: 'asklowprice',
         component: () =>
-            import ("../views/Asklowprice.vue")
-    },
-    {
-        path: "*",
-        redirect: "/home"
+            import ("../views/asklowprice.vue")
     }
-
 ]
 
 const router = new VueRouter({

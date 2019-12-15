@@ -13,3 +13,7 @@ export let getDealerList = (params) => {
 export let getCityList = (params) => {
     return request('/v1-city-alllist.html', { params })
 }
+
+export let submitLowprice = (params) => {
+    return request('/h2-submit-lowprice.html', { params })
+}

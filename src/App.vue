@@ -6,11 +6,6 @@
 
 <style lang="scss">
 
-*{
-  list-style: none;
-  box-sizing: border-box;
-}
-
 html {
   font-size: calc(100vw / 750 * 100);
   width: 100%;

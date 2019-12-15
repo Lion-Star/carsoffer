@@ -1,70 +1,77 @@
 <template>
-  <div class="drawer" ref="ele" @touchstart="touchStart" @touchmove="touchMove">
-    <li v-for="(item,index) in list" :key="index">{{item.title}}</li>
-  </div>
+<div class="drawer" ref="ele" @touchstart="touchStart" @touchmove="touchMove">
+    <li v-for="(item,index) in list" :key="index"><a :href="'#'+index">{{item.title}}</a></li>
+</div>
 </template>
 
 <script>
 export default {
-  props: ["list"],
-  data() {
-    return {
-      ind: 0
-    };
-  },
-  watch: {
-    list: function() {
-      //Dom 渲染完成进行的操作
-      this.$nextTick(() => {
-        this.offsetTop = (window.innerHeight - this.$refs.ele.offsetHeight) / 2;
-        console.log(window.innerHeight, this.$refs.ele.offsetHeight);
-      });
-    }
-  },
-  methods: {
-    touchStart(e) {
-      let y = e.touches[0].pageY - this.offsetTop;
-      let height = this.$refs.ele.children[0].offsetHeight;
-      let index = Math.floor(y / height);
+    props: ["list"],
+    data() {
+        return {
+            ind: 0
+        };
     },
-    touchMove(e) {
-      let y = e.touches[0].pageY - this.offsetTop;
-      let height = this.$refs.ele.children[0].offsetHeight;
-      let index = Math.floor(y / height);
-      // 处理边界
-      // index<1时 index=1 否则 就用index
-      // 当this.list.length-1 >=0 即为本身 否则为null
-      index < 0
-        ? (index = 0)
-        : index > this.list.length - 1
-        ? (index = this.list.length - 1)
-        : null;
-      this.$emit("skip", index);
+    watch: {
+        list: function () {
+            //Dom 渲染完成进行的操作
+            this.$nextTick(() => {
+                this.offsetTop = (window.innerHeight - this.$refs.ele.offsetHeight) / 2;
+                console.log(window.innerHeight, this.$refs.ele.offsetHeight);
+            });
+        }
+    },
+    methods: {
+        touchStart(e) {
+            let y = e.touches[0].pageY - this.offsetTop;
+            let height = this.$refs.ele.children[0].offsetHeight;
+            let index = Math.floor(y / height);
+        },
+        touchMove(e) {
+            let y = e.touches[0].pageY - this.offsetTop;
+            let height = this.$refs.ele.children[0].offsetHeight;
+            let index = Math.floor(y / height);
+            // 处理边界
+            // index<1时 index=1 否则 就用index
+            // 当this.list.length-1 >=0 即为本身 否则为null
+            index < 0 ?
+                (index = 0) :
+                index > this.list.length - 1 ?
+                (index = this.list.length - 1) :
+                null;
+            this.$emit("skip", index);
+        }
     }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .drawer {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 50%;
-  transform: translate(48%, -50%);
-  right: 0.16rem;
-  color: #999;
-  align-items: center;
-  text-align: center;
-  font-size: 0.22rem;
-  margin-right: 0.06rem;
-  li {
-    list-style: none;
-    padding: 0.06rem;
-    color: #666;
-    &.active {
-      color: #f56;
+    width: .60rem;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    transform: translate(48%, -50%);
+    right: 0.16rem;
+    color: #eee;
+    align-items: center;
+    text-align: center;
+    font-size: 0.24rem;
+    margin-right: 0.06rem;
+
+    li {
+        list-style: none;
+        padding: 0.06rem;
+        color: #666;
+
+        a {
+            color: #666;
+        }
+
+        &.active {
+            color: #f56;
+        }
     }
-  }
 }
 </style>
