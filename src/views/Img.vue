@@ -113,7 +113,7 @@ export default {
     display: flex;
     position: fixed;
     top: 0;
-    z-index: 3;
+    z-index: 19;
     span{
         flex: 1;
         text-align: center;

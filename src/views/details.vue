@@ -14,7 +14,7 @@
 <script>
 import Head from '../components/details/Head'
 import Tab from '../components/details/Tab'
-import {mapActions} from "vuex";
+import {mapState,mapActions} from "vuex";
 export default {
     components:{
         Head,
@@ -25,7 +25,7 @@ export default {
     },
     created(){
         //数据接口传参
-         this.getlist(JSON.parse(sessionStorage.getItem('item')).SerialID)
+        this.getlist(JSON.parse(sessionStorage.getItem('item')).SerialID)
     }
 }
 </script>

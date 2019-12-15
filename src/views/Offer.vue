@@ -3,12 +3,13 @@
       <header>
          <p>可向多个商家询问最低价，商家及时回复？</p>
       </header>
-      <div class="title">
+      <div class="title" @click="setCarType">
           <img :src="title.img" alt="">
           <div class="title-right">
               <p>{{title.name}}</p>
-              <p>2019款 35 TFSI 进取版 国V</p>
+              <p>{{title.year}}款 {{title.car_name}}</p>
           </div>
+          <div><span>></span></div>
       </div>
       <div class="form">
           <p>个人信息</p>
@@ -27,6 +28,12 @@
       <transition name="scroll-top">
           <Select :showSelect.sync="showSelect" :IP="IP"  v-show="showSelect" />
       </transition>
+      <!-- 点击弹出车款组件 -->
+      <transition name="scroll-top">
+          <div class="Cartype" v-show = "showType">
+              <Cartype :showType.sync="showType" />
+          </div>
+      </transition>
   </div>
 </template>
 
@@ -34,24 +41,31 @@
 import {mapState,mapActions} from 'vuex'
 import Select from '../components/offer/Select'
 import Dealer from '../components/offer/Dealer'
+import Cartype from '../components/carImg/Cartype'
 export default {
   data(){
      return{
-          showSelect:false,
+          showType: false,
+          showSelect: false,
           title:{}
      }
   },
   components:{
       Select,
-      Dealer
+      Dealer,
+      Cartype
   },
   methods: {
       ...mapActions({
             getIP:"offer/getIP"
         }),
-        //点击弹出省份
+      //点击弹出省份
       showSele(){
           this.showSelect=true
+      },
+      //点击切换车款
+      setCarType(){
+          this.showType=true
       }
   },
   computed:{
@@ -61,7 +75,7 @@ export default {
   },
   created(){
      this.getIP()
-     this.title = sessionStorage.getItem('offer')
+     this.title = JSON.parse(sessionStorage.getItem('offer')) 
   }
 }
 </script>
@@ -72,6 +86,15 @@ export default {
 }
 .scroll-top-enter-active, .scroll-top-leave-active{
     transition: transform .1s linear;
+}
+.Cartype{
+    position: fixed;
+    top: -1rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+    overflow-y: auto;
 }
 .asklowprice-page{
     width: 100%;
@@ -105,16 +128,20 @@ export default {
     .title-right{
       margin-left: .2rem;
       width: 4.3rem;
-      p{
-        line-height: .65rem;
-      }
       p:nth-child(1){
         font-size: .36rem;
+        line-height: .8rem;
       }
       p:nth-child(2){
         color: #333;
+        font-size: .30rem;
+        line-height: .3rem;
       }
     }
+     span{
+        display: inline-block;
+        padding-top: .6rem;
+      }
 }
 .form{
     p{

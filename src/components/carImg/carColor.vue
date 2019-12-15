@@ -42,7 +42,7 @@ export default {
             console.log(sessionStorage.getItem('SerialID'))
             console.log(item)
             // this.getImg(sessionStorage.getItem('SerialID')) 
-            this.$emit('update:showColor',false)
+            // this.$emit('update:showColor',false)
         }
     },
     created(){
@@ -55,7 +55,6 @@ export default {
 .warp{
     width: 100%;
     height: 100%;
-    z-index: 10;
     background: #f4f4f4;
     .p{
         margin: .15rem 0;
@@ -65,7 +64,6 @@ export default {
         text-align: center;
         line-height: .8rem;
         height: .8rem;
-        z-index: 99;
     }
 }
 .warp{

@@ -57,7 +57,7 @@ export default {
     width: 100%;
     height: 100%;
     background: #f4f4f4;
-    z-index: 10;
+    z-index: 29;
     .p{
         margin: .15rem 0;
         font-size: .34rem;

@@ -27,15 +27,13 @@ export default {
         })
   },
   methods:{
-      toImg(){
-          sessionStorage.setItem('SerialID',this.data.SerialID)
-          this.$router.push(`/img?SerialID=${this.data.SerialID}`)
-      },
-      toOffer(){
-          this.$router.push('/offer')
-          let title = {img:this.data.Picture,name:this.data.AliasName}
-        sessionStorage.setItem('offer',title)    
-      }
+        toImg(){
+            sessionStorage.setItem('SerialID',this.data.SerialID)
+            this.$router.push(`/img?SerialID=${this.data.SerialID}`)
+        },
+        toOffer(){
+            this.$router.push('/offer')
+        }
   }
 }
 </script>

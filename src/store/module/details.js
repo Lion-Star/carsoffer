@@ -49,6 +49,10 @@ function yearList(list){
 //判断排序数据
 function ifList(data){
     state.data = data
+    let list = data.list[0]
+    //存入汽车名
+    let title = {img:data.Picture,name:data.AliasName,car_name:list.car_name,year:list.market_attribute.year}
+    sessionStorage.setItem('offer',JSON.stringify(title))
     //拿到详情年份
     state.yearNav = ['全部']
     let yearNav = data.list.map(item => item.market_attribute.year)
