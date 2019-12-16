@@ -75,6 +75,7 @@ export default {
     },
     //点击弹窗
     showPopup(id) {
+      console.log(_hmt.push(['_trackEvent', category, action, opt_label, opt_value]))
       this.show = true;
       this.getMakeListByMasterBrandId(id);
     },
